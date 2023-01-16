@@ -1,11 +1,93 @@
-
+<style>
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 8;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+      .modal-content {
+        margin: 50px auto;
+        border: 0 solid #999;
+        width: 60%;
+      }
+      h2,
+      p {
+        margin: 0 0 20px;
+        font-weight: 400;
+        color: #999;
+      }
+      span {
+        color: #666;
+        display: block;
+        padding: 0 0 5px;
+      }
+      form {
+        padding: 25px;
+        margin: 155px;
+        box-shadow: 0 2px 5px #f5f5f5;
+        background: #eee;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #1c87c9;
+        outline: none;
+      }
+      .contact-form button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        background: #1c87c9;
+        font-size: 16px;
+        font-weight: 400;
+        color: #fff;
+      }
+      button:hover {
+        background: #2371a0;
+      }
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      /* button.button {
+        background: none;
+        border-top: none;
+        outline: none;
+        border-right: none;
+        border-left: none;
+        border-bottom: #02274a 1px solid;
+        padding: 0 0 3px 0;
+        font-size: 16px;
+        cursor: pointer;
+      } */
+      button.button:hover {
+        border-bottom: #a99567 1px solid;
+        /* color: #a99567; */
+      }
+</style>
     <section class="se_1">
         <div class="container">
             <div class="row align-items">
                 <div class="col_50">
                     <div class="se_1_text">
                         <h1>Study Smarter, Not Harder! With Gujarat's No.1 Academy</h1>
-                        <a href="#join"><button>Join Us</button></a>
+                        <button class="button" data-modal="modalOne">Join Us</button>
                         <p>We are proud to say that WebSankul is the most trusted Academy & Digital Class in gujarat</p>
                     </div>
                 </div>
@@ -439,7 +521,7 @@
     <!-- -------------- section 9 --------------  -->
 
 
-    <section class="se_9" id="join">
+    <section class="se_9" >
         <div class="container">
             <div class="row align-items">
                 <div class="col_50">
@@ -454,26 +536,119 @@
                     </div>
                     <br>
                     <br>
-                    <form class="forme_color" action="#" method="post">
+                    <form class="forme_color"  method="post">
                     
                         <input type="text" placeholder="Name" name="name">
+                        <input type="text" placeholder="Email" name="email" />
                         <input type="tel" placeholder="Mobile number" name="mobile_no">
-                        <select name="class" id="">
+                        <select name="class" >
                             <option value="Online Course">Online Course</option>
                             <option value="Offline Course">Offline Admission</option>
                         </select>
-                        <select name="course" id="">
+                        <select name="course" >
                             <option value="JEE">JEE</option>
                             <option value="NEET">NEET</option>
-                            
                         </select>
                         
 
-                       
-                        <button type="submit" name="inquiry">Submit</button>
+                        <!-- <button name="inquiry">Submit</button> -->
+                        <input type="submit" name="inquiry" value="Submit">
                     </form>
                 </div>
             </div>
         </div>
     </section>
+<!-- -------------- section popup joinus --------------  -->
+    <div id="modalOne" class="modal">
+      <div class="modal-content">
+        <div class="contact-form">
+          
+          <form action="/" method="post" >
+          <a class="close">&times;</a>
+            <h4>JOIN US...</h4>
+            <p>Enter your details to receive a call back from us</p>
+            <div>
+              <input type="text" name="name" placeholder="Full name" />
+              <input type="text" name="name" placeholder="Email" />
+              <input type="tel" placeholder="Mobile number" name="mobile_no" />
+                <select name="class" >
+                            <option value="Online Course">Online Course</option>
+                            <option value="Offline Course">Offline Admission</option>
+                </select>
+                <select name="course" >
+                            <option value="JEE">JEE</option>
+                            <option value="NEET">NEET</option>
+                </select>
+                <button type="submit" name="inquiry" >Submit</button>
+            </div>
+            
+           
+          </form>
+        </div>
+      </div>
+    </div>
 
+<!-- -------------- section script --------------  -->
+
+    <script>
+      let modalBtns = [...document.querySelectorAll(".button")];
+      modalBtns.forEach(function (btn) {
+        btn.onclick = function () {
+          let modal = btn.getAttribute("data-modal");
+         document.getElementById(modal).style.display = "block";
+         
+        };
+        
+      });
+      let closeBtns = [...document.querySelectorAll(".close")];
+      closeBtns.forEach(function (btn) {
+        btn.onclick = function () {
+          let modal = btn.closest(".modal");
+          modal.style.display = "none";
+        };
+      });
+      window.onclick = function (event) {
+        if (event.target.className === "modal") {
+          event.target.style.display = "none";
+        }
+      };
+    //   function inquiry(){
+    //     event.preventDefault();
+    //     let FormData=$("#inquiry").serializeArray()
+    //     let result{}="";
+    //     $.each(FormData,function(){
+    //         result[this.name]=this.value;
+    //     });
+    //     let header_for _post={
+    //         method:"POST",
+    //         body:JSON.stringify(result)
+    //     }
+    //     fetch("http://localhost/Group_project/API/inquiryData",header_for_post).then(response=>json.response()).then(res()=>{
+    //         console.log(res);
+    //         $data=json.decode(res);
+    //         echo $data['name'];
+    //     })
+    //   }
+
+
+
+    
+    //   document.getElementsByName("inquiry").addEventListener("click", function(event) {
+    //     event.preventDefault();
+    //     let FormData=$("#inquiry").serializeArray()
+    //     let result{}="";
+    //     $.each(FormData,function(){
+    //         result[this.name]=this.value;
+    //     });
+    //     let header_for _post={
+    //         method:"POST",
+    //         body:JSON.stringify(result)
+    //     }
+    //     fetch("http://localhost/Group_project/API/inquiryData",header_for_post).then(response=>json.response()).then(res()=>{
+    //         console.log(res);
+    //         $data=json.decode(res);
+    //         echo $data['name'];
+    //     })
+    //   })
+     
+    </script>

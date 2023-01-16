@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +22,8 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="<?php echo $this->BaseURLDynamic;?>lib/jquery.js"></script>
+	<script defer src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
 
 
 </head>
@@ -41,14 +46,18 @@
                             <li class="dropdown"><a href="currentaffair">Current Affairs<i
                                         class="fa-solid fa-caret-down"></i></a>
                                 <ul class="dropdown-nav">
-                                    <li><a href="#">JEE</a></li>
-                                    <li><a href="#">NEET</a></li>
+                                    <li><a href="jee">JEE</a></li>
+                                    <li><a href="neet">NEET</a></li>
                                     
                                 </ul>
                             </li>
                             <li><a href="material">Materials</a></li>
                             <li><a href="contact">Contact Us</a></li>
                             <li><a href="about">About Us</a></li>
+                            <?php if(isset($_SESSION['UserData'])) {
+                                $course['data']=$_SESSION['UserData']; ?>
+                            <li><a href="#"><?php echo $course['data']; ?></a></li>
+                                <?php }?>
                         </ul>
                     </div>
                 </div>
