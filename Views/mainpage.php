@@ -563,13 +563,13 @@
       <div class="modal-content">
         <div class="contact-form">
           
-          <form action="/" method="post" >
+          <form method="post" >
           <a class="close">&times;</a>
             <h4>JOIN US...</h4>
             <p>Enter your details to receive a call back from us</p>
             <div>
               <input type="text" name="name" placeholder="Full name" />
-              <input type="text" name="name" placeholder="Email" />
+              <input type="text" name="email" placeholder="Email" />
               <input type="tel" placeholder="Mobile number" name="mobile_no" />
                 <select name="class" >
                             <option value="Online Course">Online Course</option>
@@ -579,7 +579,7 @@
                             <option value="JEE">JEE</option>
                             <option value="NEET">NEET</option>
                 </select>
-                <button type="submit" name="inquiry" >Submit</button>
+                <input type="submit" name="inquiry" value="Submit">
             </div>
             
            

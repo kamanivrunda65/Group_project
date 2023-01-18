@@ -1,5 +1,6 @@
 <?php
 include_once("Model/model.php");
+session_start();
 class controller extends model{
     public function __construct(){
         parent::__construct();
@@ -27,6 +28,8 @@ class controller extends model{
                         // else{
                         //     echo "Error";
                         // }
+                        //$_SESSION['email']=$_REQUEST['email'];
+                    
                         if ($Res['Code'] == 1) {
                             $_SESSION['UserData']= $Res['Data'][0];
                     
@@ -48,12 +51,44 @@ class controller extends model{
                     include_once('Views/contact.php');
                     include_once('Views/footer.php');
                     break;
-                    case '/neet':
-                        include_once('Views/header.php');
-                        include_once('Views/neet.php');
-                        include_once('Views/footer.php');
-                        break;
-        
+                case '/class':
+                    include_once('Views/header.php');
+                    include_once('Views/class.php');
+                    include_once('Views/footer.php');
+                    break;
+                case '/neet':
+                    include_once('Views/header.php');
+                    include_once('Views/neet.php');
+                    include_once('Views/footer.php');
+                    // if(isset($_GET['neetonline'])){
+                    //     $Res=$this->class("ONLINE","NEET");
+                    //     $_SESSION['class']=$Res['Data']['0'];
+                    // }
+                    // if(isset($_GET['neetoffline'])){
+                    //     $Res=$this->class("OFFLINE","NEET");
+                    //     $_SESSION['class']=$Res['Data']['0'];
+                    // }
+                    // break;
+                    
+                 case '/jee':
+                    include_once('Views/header.php');
+                    include_once('Views/jee.php');
+                    include_once('Views/footer.php');
+                    
+                //       if($_SERVER['PATH_INFO']=='/jee'){
+                //     if(isset($_GET['jeeonline'])){
+                //         $Res=$this->class("ONLINE","JEE");
+                //         $_SESSION['class']=$Res['Data']['0'];
+                //     }
+                //     else if(isset($_GET['jeeoffline'])){
+                //         $Res=$this->class("OFFLINE","JEE");
+                //         $_SESSION['class']=$Res['Data']['0'];
+                //     }
+                // }
+                //     else{
+                    
+                //     }
+                    break;
                 case '/material':
                     include_once('Views/header.php');
                     include_once('Views/materials.php');

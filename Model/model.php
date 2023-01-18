@@ -27,9 +27,27 @@ class model{
         $arraykey=implode(",",array_keys($data));
         $arrayvalue=implode("','",$data);
         //$id=$table."_id";
+        //$email['data']=$data['email'];
         
         $SQL="INSERT INTO $table ($arraykey) VALUES ('$arrayvalue')";
         //echo $SQL;
+        $SQLEx=$this->connection->query($SQL);
+        
+        if ($SQLEx > 0) {
+            $ResponseData['Code']="1";
+            $ResponseData['Msg']="Success";
+            $ResponseData['Data']="1";
+        }else{
+            $ResponseData['Code']="0";
+            $ResponseData['Msg']="Error while inserting";
+            $ResponseData['Data']="0";
+        }
+        return $ResponseData;
+    }
+
+
+    public function class($class,$course){
+        $SQL="SELECT * FROM batch WHERE batch_course='$course' AND batch_class='$class'";
         $SQLEx=$this->connection->query($SQL);
         if($SQLEx->num_rows>0){
             while($SQLEXFetch=$SQLEx->fetch_object()){
@@ -42,9 +60,11 @@ class model{
             $ResponseData['Code']="0";
             $ResponseData['Msg']="Error while inserting";
             $ResponseData['Data']="0";
+
         }
         return $ResponseData;
     }
 }
 
 ?>
+

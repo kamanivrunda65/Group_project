@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,9 +52,9 @@ session_start();
                             <li><a href="material">Materials</a></li>
                             <li><a href="contact">Contact Us</a></li>
                             <li><a href="about">About Us</a></li>
-                            <?php if(isset($_SESSION['UserData'])) {
-                                $course['data']=$_SESSION['UserData']; ?>
-                            <li><a href="#"><?php echo $course['data']; ?></a></li>
+                             <?php if(isset($_SESSION['UserData'])) {
+                                //  $course=$_SESSION['UserData']; ?>
+                            <li><a href="class">Class</a></li>
                                 <?php }?>
                         </ul>
                     </div>
@@ -66,6 +64,7 @@ session_start();
                         <ul>
                             <li><a href="#"><i class="fa-solid fa-phone"></i></a></li>
                             <li class="fon_number"><a href="#">+91 8908909988</a></li>
+                           
                         </ul>
 
                     </div>
