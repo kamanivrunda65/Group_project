@@ -18,9 +18,11 @@ class controller extends model{
                     
                     if(isset($_REQUEST['inquiry'])){
                         array_pop($_REQUEST);
+                        $course=$_REQUEST['course'];
+                        $Res=$this->insert("inquiry",$_REQUEST);
                         //echo "<pre>";
                         //print_r($_REQUEST);
-                        $Res=$this->insert("inquiry",$_REQUEST);
+                        //$Res=$this->insert("inquiry",$_REQUEST);
                         // if($Res['Code'] == 1){
                         //     $_SESSION['UserData']= $Res['Data'][0];
                         //     header("location:home");
@@ -32,8 +34,8 @@ class controller extends model{
                     
                         if ($Res['Code'] == 1) {
                             $_SESSION['UserData']= $Res['Data'][0];
-                    
-                           if ($Res['Data'][0]->course == 'JEE') {
+                        
+                           if ($course == 'JEE') {
                                header("location:jee");
                            } else {
                                header("location:neet");
@@ -44,7 +46,7 @@ class controller extends model{
                            } 
                         }
                     
-                    break;
+                        break;
                 
                  case '/contact':
                     include_once('Views/header.php');
@@ -76,11 +78,11 @@ class controller extends model{
                     include_once('Views/footer.php');
                     
                 //       if($_SERVER['PATH_INFO']=='/jee'){
-                //     if(isset($_GET['jeeonline'])){
+                //     if($_GET['jeeonline']){
                 //         $Res=$this->class("ONLINE","JEE");
                 //         $_SESSION['class']=$Res['Data']['0'];
                 //     }
-                //     else if(isset($_GET['jeeoffline'])){
+                //     else if(($_GET['jeeoffline'])){
                 //         $Res=$this->class("OFFLINE","JEE");
                 //         $_SESSION['class']=$Res['Data']['0'];
                 //     }
@@ -88,6 +90,7 @@ class controller extends model{
                 //     else{
                     
                 //     }
+                //echo $Res['Data'][0]->class;
                     break;
                 case '/material':
                     include_once('Views/header.php');
