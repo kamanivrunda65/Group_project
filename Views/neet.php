@@ -2,6 +2,11 @@
     .abc{
         margin :20px;
     }
+    
+    .active{
+        background-color: #69dddd;
+        
+    }
 </style>
 <section class="about_sec_4">
         <div class="container">
@@ -51,27 +56,35 @@
         </div>
     </section>
     <?php if(isset($_SESSION['UserData'])) { 
-    print_r($_SESSION['UserData'])?>
+    ?>
     
   <!-- -------------- section 3 --------------  -->
   <section class="current_se_2">
         <div class="container">
             
-            <div class="row">
-               
+                <center>
                 <div class="col_25">
-                    <div class="section_text">
-                        <a href="?neetonline">NEET(Online Class)</a>
+                    <div class="section_text active">
+                        <a style="width: 90%;" > Class</a>
                     </div>
                 </div>
-              
+                </center>
+            <!-- <div class="row">
                 <div class="col_25">
-                    <div class="section_text">
-                        <a href="?neetoffline">NEET(Offline Class)</a>
+                </div>
+                <div class="col_25">
+                    <div class="section_text ">
+                        <a href="?jeeonline">JEE(Online Class)</a>
                     </div>
                 </div>
-            </div>
-                
+                <div class="col_25">
+                    <div class="section_text">
+                        <a href="?jeeoffline">JEE(Offline Class)</a>
+                    </div>
+                </div>
+                <div class="col_25">
+                </div>
+            </div>-->
             
         </div>
     </section>
@@ -79,25 +92,36 @@
 
   <section class="current_se_3">
         <div class="container">
-            <div class="row">
+            <div class="row" id="displaydata">
               
-                <div class="col_25">
-                    <div class="current_affairs_card">
-                        
-                        <div class="se_3_text_pading">
-                            <a>Course : <?php echo $_SESSION['class']->batch_course;?>(<?php echo $_SESSION['class']->batch_class;?>)</a>
-                            <p>Fauclty :<?php echo $_SESSION['class']->batch_faculty;?></p> 
-                            <p>Batch Name :<?php echo $_SESSION['class']->batch_name;?></p> 
-                            <p>Location :<?php echo $_SESSION['class']->location;?></p> 
-                            <p>Start Date :<?php echo $_SESSION['class']->start_date;?></p> 
-                            
-                            
-                        </div>
-                    </div>
-                </div>
                
                
             </div>
         </div>
     </section>
-    <?php } ?>
+    <script>
+		
+		fetch("http://localhost/Group_project/API/class").then(response=>response.json()).then((res)=>{
+            //console.log(res.Data);
+            htmlresponse = '';
+				res.Data.forEach(element => {
+                    if(element.batch_course=="NEET"){
+					htmlresponse += `<div class="col_25"><div class="current_affairs_card"><center>
+                            <a>     ${element.batch_course}(${element.batch_class})</a>
+                            <p>Batch : ${element.batch_name}</p>
+                            <p>Faculty : ${element.batch_faculty}</p>
+                            
+                            <p>Time : ${element.batch_time}</p>
+                            <p>Location : ${element.location}</p>
+                            <p>Start Date : ${element.start_date}</p>
+                            <a href="register?class=${element.batch_class}&course=${element.batch_course}"><button >Register</button></a><br>
+                            </center>
+                            </div></div>`
+                    }      
+					
+				})
+				 //console.log(htmlresponse);
+				 $("#displaydata").html(htmlresponse)
+		})
+	</script>
+    <?php} ?>

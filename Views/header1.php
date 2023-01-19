@@ -1,4 +1,11 @@
-
+<style>
+    .search input, button {
+    padding: 10px 20px;
+    border: 2px solid;
+    border-radius: 8px;
+    outline: 2px;
+}
+</style>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +47,7 @@
                 <div class="col">
                     <div class="header_text">
                         <ul>
-                        <li><a href="home">HOME</a></li>
+                            <li><a href="home">HOME</a></li>
                             <li class="dropdown"><a href="currentaffair">CURRENT AFFAIRS<i
                                         class="fa-solid fa-caret-down"></i></a>
                                 <ul class="dropdown-nav">
@@ -57,13 +64,14 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="number">
-                        <ul>
-                            <li><a href="#"><i class="fa-solid fa-phone"></i></a></li>
-                            <li class="fon_number"><a href="#">+91 8908909988</a></li>
-                           
-                        </ul>
-
+                    <div class="header_text">
+                    <i class="fa fa-user dropdown">
+                            <ul class="dropdown-nav">
+                                    <li><a href="jee">JEE</a></li>
+                                    <li><a href="neet">NEET</a></li>
+                                    
+                            </ul> 
+                    </i>   
                     </div>
                 </div>
             </div>

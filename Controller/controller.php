@@ -19,6 +19,7 @@ class controller extends model{
                     if(isset($_REQUEST['inquiry'])){
                         array_pop($_REQUEST);
                         $course=$_REQUEST['course'];
+                        $class=$_REQUEST['class'];
                         $Res=$this->insert("inquiry",$_REQUEST);
                         //echo "<pre>";
                         //print_r($_REQUEST);
@@ -58,10 +59,20 @@ class controller extends model{
                     include_once('Views/class.php');
                     include_once('Views/footer.php');
                     break;
-                case '/neet':
+                case '/register':
                     include_once('Views/header.php');
+                    include_once('Views/signup.php');
+                    include_once('Views/footer.php');
+                    break;
+                case '/neet':
+                    if(isset($_SESSION['UserData'])){
+                    include_once('Views/header1.php');
+                    }else{
+                    include_once('Views/header.php');
+                    }
                     include_once('Views/neet.php');
                     include_once('Views/footer.php');
+                    
                     // if(isset($_GET['neetonline'])){
                     //     $Res=$this->class("ONLINE","NEET");
                     //     $_SESSION['class']=$Res['Data']['0'];
@@ -70,27 +81,36 @@ class controller extends model{
                     //     $Res=$this->class("OFFLINE","NEET");
                     //     $_SESSION['class']=$Res['Data']['0'];
                     // }
-                    // break;
+                
+                    break;
                     
                  case '/jee':
-                    include_once('Views/header.php');
+                    if(isset($_SESSION['UserData'])){
+                        include_once('Views/header1.php');
+                        }else{
+                        include_once('Views/header.php');
+                        }
                     include_once('Views/jee.php');
                     include_once('Views/footer.php');
-                    
-                //       if($_SERVER['PATH_INFO']=='/jee'){
-                //     if($_GET['jeeonline']){
-                //         $Res=$this->class("ONLINE","JEE");
-                //         $_SESSION['class']=$Res['Data']['0'];
-                //     }
-                //     else if(($_GET['jeeoffline'])){
-                //         $Res=$this->class("OFFLINE","JEE");
-                //         $_SESSION['class']=$Res['Data']['0'];
-                //     }
-                // }
-                //     else{
-                    
-                //     }
-                //echo $Res['Data'][0]->class;
+                   
+                
+                    // if(isset($_GET['jeeonline'])){
+                    //     $Res=$this->class("ONLINE","JEE");
+                    //     $_SESSION['class']=$Res['Data']['0'];
+                    // }
+                    // else if(isset($_GET['jeeoffline'])){
+                    //     $Res=$this->class("OFFLINE","JEE");
+                    //     $_SESSION['class']=$Res['Data']['0'];
+                    // }
+                
+                    // else{
+                    //     $Res=$this->class("NOT NULL","NOT NULL");
+                    //     echo "<pre>";
+                    //     print_r($Res);
+                    //     echo "</pre>";
+                    //     $_SESSION['class']=$Res['Data']['0'];
+                    // }
+                
                     break;
                 case '/material':
                     include_once('Views/header.php');

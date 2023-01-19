@@ -58,7 +58,7 @@ class model{
             $ResponseData['Data']=$SqlFetchData;
         }else{
             $ResponseData['Code']="0";
-            $ResponseData['Msg']="Error while inserting";
+            $ResponseData['Msg']="Fail";
             $ResponseData['Data']="0";
 
         }
