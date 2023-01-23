@@ -12,6 +12,7 @@ class controller extends model{
         if(isset($_SERVER['PATH_INFO'])){
             switch($_SERVER['PATH_INFO']){
                 case '/home':
+                    
                     include_once('Views/header.php');
                     include_once('Views/mainpage.php');
                     include_once('Views/footer.php');
@@ -65,57 +66,33 @@ class controller extends model{
                     include_once('Views/footer.php');
                     break;
                 case '/neet':
-                    if(isset($_SESSION['UserData'])){
-                    include_once('Views/header1.php');
-                    }else{
+                    
                     include_once('Views/header.php');
-                    }
                     include_once('Views/neet.php');
                     include_once('Views/footer.php');
-                    
-                    // if(isset($_GET['neetonline'])){
-                    //     $Res=$this->class("ONLINE","NEET");
-                    //     $_SESSION['class']=$Res['Data']['0'];
-                    // }
-                    // if(isset($_GET['neetoffline'])){
-                    //     $Res=$this->class("OFFLINE","NEET");
-                    //     $_SESSION['class']=$Res['Data']['0'];
-                    // }
-                
                     break;
                     
                  case '/jee':
-                    if(isset($_SESSION['UserData'])){
-                        include_once('Views/header1.php');
-                        }else{
-                        include_once('Views/header.php');
-                        }
+                    include_once('Views/header.php');
                     include_once('Views/jee.php');
                     include_once('Views/footer.php');
-                   
-                
-                    // if(isset($_GET['jeeonline'])){
-                    //     $Res=$this->class("ONLINE","JEE");
-                    //     $_SESSION['class']=$Res['Data']['0'];
-                    // }
-                    // else if(isset($_GET['jeeoffline'])){
-                    //     $Res=$this->class("OFFLINE","JEE");
-                    //     $_SESSION['class']=$Res['Data']['0'];
-                    // }
-                
-                    // else{
-                    //     $Res=$this->class("NOT NULL","NOT NULL");
-                    //     echo "<pre>";
-                    //     print_r($Res);
-                    //     echo "</pre>";
-                    //     $_SESSION['class']=$Res['Data']['0'];
-                    // }
-                
-                    break;
+                   break;
                 case '/material':
                     include_once('Views/header.php');
                     include_once('Views/materials.php');
                     include_once('Views/footer.php');
+                    break;
+                case '/login':
+                    include_once('Views/login.php');
+                    break;
+               
+                case '/logout':
+                    setcookie("access_id", '', time()-7000000);
+                    header("location:login");
+                    
+                    break;   
+                 case '/adminlogin':
+                    include_once('Views/admin/login.php');
                     break;
                 case '/privacy':
                     include_once('Views/header.php');
@@ -151,6 +128,16 @@ class controller extends model{
                  case '/admindashboard':
                     include_once('Views/admin/adminheader.php');
                     include_once('Views/admin/admindashboard.php');
+                    include_once('Views/admin/adminfooter.php');
+                    break;
+                case '/usertable':
+                    include_once('Views/admin/adminheader.php');
+                    include_once('Views/admin/usertable.php');
+                    include_once('Views/admin/adminfooter.php');
+                    break;
+                case '/addfaculty':
+                    include_once('Views/admin/adminheader.php');
+                    include_once('Views/admin/faculty.php');
                     include_once('Views/admin/adminfooter.php');
                     break;
                 

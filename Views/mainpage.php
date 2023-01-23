@@ -538,14 +538,14 @@
                     <br>
                     <form class="forme_color"  method="post">
                     
-                        <input type="text" placeholder="Name" name="name">
-                        <input type="text" placeholder="Email" name="email" />
-                        <input type="tel" placeholder="Mobile number" name="mobile_no">
-                        <select name="class" >
+                        <input type="text" placeholder="Name" name="name" onblur="checkreq(this)" required>
+                        <input type="text" placeholder="Email" name="email" id="email" onblur="checkreq(this)" required>
+                        <input type="tel" placeholder="Mobile number" name="mobile_no" onblur="checkreq(this)" onkeypress="return (event.which >=48 && event.which <=57 )" required>
+                        <select name="class" onblur="checkreq(this)" required>
                             <option value="Online Course">Online Course</option>
                             <option value="Offline Course">Offline Admission</option>
                         </select>
-                        <select name="course" >
+                        <select name="course" onblur="checkreq(this)" required>
                             <option value="JEE">JEE</option>
                             <option value="NEET">NEET</option>
                         </select>
@@ -568,9 +568,9 @@
             <h4>JOIN US...</h4>
             <p>Enter your details to receive a call back from us</p>
             <div>
-              <input type="text" name="name" placeholder="Full name" />
-              <input type="text" name="email" placeholder="Email" />
-              <input type="tel" placeholder="Mobile number" name="mobile_no" />
+              <input type="text" name="name" placeholder="Full name" onblur="checkreq(this)" required>
+              <input type="text" name="email" placeholder="Email" id="email" onblur="checkreq(this)" required>
+              <input type="tel" placeholder="Mobile number" name="mobile_no" onblur="checkreq(this)" onkeypress="return (event.which >=48 && event.which <=57 )" required>
                 <select name="class" >
                             <option value="Online Course">Online Course</option>
                             <option value="Offline Course">Offline Admission</option>
@@ -651,4 +651,49 @@
     //     })
     //   })
      
+
+    function checkreq(e){
+			const el=e;
+			const newEl = document.createElement("span");
+            const newContent = document.createTextNode("This field is required");
+            newEl.appendChild(newContent);
+            if (el.value == "") {  
+            if (e.nextSibling.nodeName == "SPAN") {
+                e.nextSibling.remove();  
+                el.after(newEl);
+            } else {
+                el.after(newEl);
+            }
+            } else {
+                e.nextSibling.remove(); 
+            }
+		}
+
+
+		document.getElementById("email").addEventListener("keyup", function() {
+        // console.log(event);
+        const el = this;          
+        //console.log(this.value);           
+        const newEl = document.createElement("span");       
+        const newContent = document.createTextNode("Invalid email format");  
+        newEl.appendChild(newContent);          
+        let pattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;  
+		
+        console.log(pattern.test(this.value));  
+        if (pattern.test(this.value)) {    
+            if (this.nextSibling.nodeName == "SPAN") {
+                this.nextSibling.remove();   
+                // el.after(newEl);
+            }
+        } else {
+            console.log("inside false", this.nextSibling); 
+            if (this.nextSibling.nodeName == "SPAN") {
+                this.nextSibling.remove();  
+                el.after(newEl);
+            } else {
+                el.after(newEl);
+            }
+        }
+    })
+
     </script>

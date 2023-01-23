@@ -22,7 +22,14 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="<?php echo $this->BaseURLDynamic;?>lib/jquery.js"></script>
 	<script defer src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
-
+    <style>
+        .button1{
+            background-color: #fff;
+            color :#0071bc;
+            border-radius: 10px;
+            border : 2px solid #0071bc;
+        }
+    </style>
 
 </head>
 
@@ -52,20 +59,46 @@
                             <li><a href="material">MATERIALS</a></li>
                             <li><a href="contact">CONTACT US</a></li>
                             <li><a href="about">ABOUT US</a></li>
-                            
+                            <!-- <?php //if(isset($_SESSION['UserData'])){?>
+                            <li ><a href="login"><button href="login" type="submit" class="button button1">LOGIN</button></a></li>
+                            <li ><a href="signup"><button href="signup" type="submit" class="button button1">SIGN UP</button></a></li>
+                            <?php //} ?> -->
                         </ul>
                     </div>
                 </div>
+                <?php if(isset($_COOKIE["access_id"])){?>
+                    <div class="col">
+                    <div class="header_text  align-items">
+                        <ul>
+                            <li class="dropdown" ><a href="profile"><button class="button button1">YOUR PROFILE</button></a>
+                            <ul class="dropdown-nav">
+                                    <li><a href="#">JEE</a></li>
+                                    <li><a href="logout">LOGOUT</a></li>
+                                    
+                                </ul>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                </div>
+                
+                <?php } elseif(isset($_SESSION['UserData'])){?>
+                    <div class="col">
+                            <a href="login"><button class="button button1">LOGIN</button></a>
+                            <a href="register"><button class="button button1">SIGN UP</button></a>
+                    </div>
+                <?php } else{?>
                 <div class="col">
                     <div class="number">
                         <ul>
                             <li><a href="#"><i class="fa-solid fa-phone"></i></a></li>
-                            <li class="fon_number"><a href="#">+91 8908909988</a></li>
+                            <li class="fon_number"><a href="#">+919876543212</a></li>
                            
                         </ul>
 
                     </div>
                 </div>
+                <?php } ?>
             </div>
         </div>
     </header>

@@ -35,6 +35,46 @@ date_default_timezone_set('Asia/Kolkata');
             }
             return $ResponseData;
         }
+        public function insert($table,$data){
+            $arraykey=implode(",",array_keys($data));
+            $arrayvalue=implode("','",$data);
+             $SQL="INSERT INTO $table ($arraykey) VALUES ('$arrayvalue')";
+            $SQLEx=$this->connection->query($SQL);
+        
+            if ($SQLEx > 0) {
+                $ResponseData['Code']="1";
+                $ResponseData['Msg']="Success";
+                $ResponseData['Data']="1";
+            }else{
+                $ResponseData['Code']="0";
+                $ResponseData['Msg']="Error while inserting";
+                $ResponseData['Data']="0";
+            }
+            return $ResponseData;
+        }
+        public function login($username,$password){
+            $SQL="SELECT * FROM users WHERE user_password='$password' AND ( user_name='$username' OR user_email='$username' OR user_mobile_no='$username')";
+            $SQLEx=$this->connection->query($SQL);
+            //print_r($SQL);
+            if ($SQLEx->num_rows > 0) {
+                
+                while ($SQLExFetch = $SQLEx->fetch_object()) {
+                    $SqlFetchData[]=$SQLExFetch;
+                }
+                $ResponseData['Code']="1";
+                $ResponseData['Msg']="Success";
+                $ResponseData['Data']=$SqlFetchData;
+            }
+            else {    
+                $ResponseData['Code']="0";
+                $ResponseData['Msg']="Error while inserting";
+                $ResponseData['Data']="0";
+            }
+            
+            return $ResponseData;
+    
+        }
+
 
     }
 ?>
