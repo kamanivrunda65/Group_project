@@ -24,7 +24,7 @@
                         
                     
                         <input type="text" placeholder="Name" name="user_name" onblur="checkreq(this)" required>
-                        <input type="text" placeholder="Email" name="user_email" onblur="checkreq(this)" id="email" required>
+                        <input type="text" placeholder="Email" name="user_email"  id="email" required>
                         <input type="tel" placeholder="Mobile number" name="user_mobile_no" onblur="checkreq(this)" onkeypress="return (event.which >=48 && event.which <=57 )" required>
                         <select name="user_gender" required>
                             <option value="Male">Male</option>
@@ -40,15 +40,23 @@
                         <input type="text" value="<?php echo $class;?>" name="user_class" readonly>
                         <input type="text" value="<?php echo $course;?>" name="user_course" readonly>
                         <?php }else{ ?>
-                         <select name="class" >
+
+
+
+
+                         <select name="user_class" onblur="checkreq(this)" >
                             <option value="Online">Online Course</option>
                             <option value="Offline">Offline Admission</option>
                         </select>
-                        <select name="course" >
+                        <select name="user_course" onblur="checkreq(this)">
                             <option value="JEE">JEE</option>
                             <option value="NEET">NEET</option>
                         </select>
                         <?php } ?>
+
+
+
+                        
                         <input type="password" placeholder="Password" name="user_password" onblur="checkreq(this)" required>
                         <!-- <input type="text" value="<?php //echo $batch;?>" name="batch_name" disable> -->
                        
@@ -61,7 +69,7 @@
             </div>
         </div>
     </section>
-    <script>
+    
 
 <script>
 		function checkreq(e){
@@ -111,10 +119,10 @@
 
 
 
-    	function adduser() {
+    function adduser(){
         event.preventDefault();     
-        let FormData = $("#adduserform").serializeArray()   
-        //console.log(FormData);
+        let FormData = $("#adduserform").serializeArray() ;  
+        console.log(FormData);
         var result = {};
         $.each(FormData, function() {
             result[this.name] = this.value;   
@@ -128,12 +136,12 @@
          fetch("http://localhost/Group_project/API/adduser", header_for_post).then(response => response.json()).then((res) => {
             // console.log(res);
             if(res.Code==1){
-                if(res.Code==1){
+                
                     window.location.href="http://localhost/Group_project/login";
-                }
+                
              }else{
                      window.location.href="http://localhost/Group_project/register";
              }
-         })
+         });
     }
     </script>

@@ -82,7 +82,7 @@
         };
     </script> -->
 
-    <script src="assets/js/custom.js" defer></script>
+    <!-- <script src="assets/js/custom.js" defer></script> -->
 
 </body>
 

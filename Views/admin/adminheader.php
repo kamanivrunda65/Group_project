@@ -364,6 +364,17 @@ ul.top-menu > li > a {
 						
                     </ul>
                 </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Pages</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="adminlogin">Login</a></li>
+						<li><a href="addfaculty">Faculty</a></li>
+                        <li><a href="#">Faculty Table</a></li>
+                    </ul>
+                </li>
                
             </ul>            
         </div>

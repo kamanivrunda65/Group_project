@@ -24,10 +24,10 @@
 	<script defer src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
     <style>
         .button1{
-            background-color: #fff;
-            color :#0071bc;
+            background-color: #0071bc;
+            color :#fff;
             border-radius: 10px;
-            border : 2px solid #0071bc;
+        
         }
     </style>
 
