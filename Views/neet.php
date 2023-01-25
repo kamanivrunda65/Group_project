@@ -124,4 +124,4 @@
 				 $("#displaydata").html(htmlresponse)
 		})
 	</script>
-    <?php} ?>
+    <?php } ?>

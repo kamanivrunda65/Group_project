@@ -46,23 +46,53 @@ class model{
     }
 
 
-    public function class($class,$course){
-        $SQL="SELECT * FROM batch WHERE batch_course='$course' AND batch_class='$class'";
-        $SQLEx=$this->connection->query($SQL);
-        if($SQLEx->num_rows>0){
-            while($SQLEXFetch=$SQLEx->fetch_object()){
-                $SqlFetchData[]=$SQLEXFetch;
-            }
-            $ResponseData['Code']="1";
-            $ResponseData['Msg']="Success";
-            $ResponseData['Data']=$SqlFetchData;
-        }else{
-            $ResponseData['Code']="0";
-            $ResponseData['Msg']="Fail";
-            $ResponseData['Data']="0";
+    // public function class($class,$course){
+    //     $SQL="SELECT * FROM batch WHERE batch_course='$course' AND batch_class='$class'";
+    //     $SQLEx=$this->connection->query($SQL);
+    //     if($SQLEx->num_rows>0){
+    //         while($SQLEXFetch=$SQLEx->fetch_object()){
+    //             $SqlFetchData[]=$SQLEXFetch;
+    //         }
+    //         $ResponseData['Code']="1";
+    //         $ResponseData['Msg']="Success";
+    //         $ResponseData['Data']=$SqlFetchData;
+    //     }else{
+    //         $ResponseData['Code']="0";
+    //         $ResponseData['Msg']="Fail";
+    //         $ResponseData['Data']="0";
 
+    //     }
+    //     return $ResponseData;
+    // }
+
+
+    public function select($tbl, $where = ""){
+        $SQL = "SELECT * FROM $tbl"; //this is a dynamic parameter recv krya 
+        if ($where != "") {
+                $SQL .= " WHERE ";
+                foreach ($where as $key => $value) 
+                {
+                    $SQL .= " $key = $value AND";
+                }
+            $SQL = rtrim($SQL, "AND");
         }
-        return $ResponseData;
+        // echo $SQL;
+        // exit; 
+        $SQLEx = $this->connection->query($SQL);
+        if ($SQLEx->num_rows > 0) {
+            while ($Fetch = $SQLEx->fetch_object()) {
+                $FetchData[] = $Fetch;
+                }
+                $Respose["Code"] = "1";
+                $Respose["Msg"] = "Success";
+                $Respose["Data"] = $FetchData;
+            } else {
+                $Respose["Code"] = "0";
+                $Respose["Msg"] = "Try again";
+                $Respose["Data"] = 0;
+            }
+        return $Respose;
+        // echo $SQL; 
     }
 }
 

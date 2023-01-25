@@ -1,26 +1,23 @@
-<button  class="btn btn-success">Form in Modal</button>
 <section id="main-content">
-
 	<section class="wrapper">
 		<div class="table-agile-info">
 		<!---728x90--->
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      Users Table
+      Faxulty Table
     </div>
-    
     <div class="row w3-res-tb">
-      
-      <div class="col-sm-9"></div>
+      <div class="col-sm-9 m-b-xs">
+        
+      </div>
       <div class="col-sm-3">
-      <div class="input-group">
+        <div class="input-group">
           <input type="text" class="input-sm form-control" placeholder="Search">
           <span class="input-group-btn">
             <button class="btn btn-sm btn-default" type="button">Go!</button>
           </span>
         </div>
-        
       </div>
     </div>
     <div class="table-responsive">
@@ -42,7 +39,7 @@
             <th>Email</th>
             <th>Mobile Number</th>
             <th>Course</th>
-            <th>Class</th>
+           
             <th data-breakpoints="xs">Password</th>
             <th data-breakpoints="xs">Date</th>
             <th data-breakpoints="xs sm md" data-title="DOB">Change</th>
@@ -50,7 +47,14 @@
         </thead>
         <tbody id="displaydata">
            
-         
+          <!-- <tr data-expanded="true">
+            <td>1</td>
+            <td>Dennise</td>
+            <td>Fuhrman</td>
+            <td>High School History Teacher</td>
+            
+            <td>July 25th 1960</td>
+          </tr> -->
           
           
           
@@ -88,20 +92,20 @@
             htmlresponse = '';
             count=1;
 				res.Data.forEach(element => {
-          if(element.role_id=="2"){
+                    if(element.role_id=="2"){
 					htmlresponse += `<tr data-expanded="true">
                             <td>${count}</td>
                             <td>${element.user_name}</td>
                             <td>${element.user_email}</td>
                             <td>${element.user_mobile_no}</td>
                             <td>${element.user_course}</td>
-                            <td>${element.user_class}</td>
+                           
                             <td>${element.user_password}</td>
                             <td>${element.date}</td>
                             <td><a href="#"><button >Edit</button></a><a href="#"><button >Delete</button></a></td>
                             </tr>`
                          count++;
-          }
+                    }
 				})
 				 //console.log(htmlresponse);
 				 $("#displaydata").html(htmlresponse)

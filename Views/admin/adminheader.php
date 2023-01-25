@@ -353,18 +353,32 @@ ul.top-menu > li > a {
                         <span>Dashboard</span>
                     </a>
                 </li>
-                
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-book"></i>
-                        <span>Tables</span>
+                <?php if(isset($_COOKIE["role_id"])){
+                            if($_COOKIE["role_id"]==1 || $_COOKIE["role_id"]==3){?> 
+               
+                <li>
+                    <a  href="userstable">
+                        <i class="fa fa-user"></i>
+                        <span>Students</span>
                     </a>
-                    <ul class="sub">
-						<li><a href="userstable">User Table</a></li>
-						
-                    </ul>
                 </li>
-                <li class="sub-menu">
+                <?php } }?>
+                <li>
+                    <a  href="materialtable">
+                        <i class="fa fa-book"></i>
+                        <span>Material</span>
+                    </a>
+                </li>
+                <?php if(isset($_COOKIE["role_id"])){
+                            if($_COOKIE["role_id"]==1){?>
+                <li>
+                    <a  href="facultytable">
+                        <i class="fa fa-user"></i>
+                        <span>Faculty</span>
+                    </a>
+                </li>
+                <?php } }?>
+                <!-- <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
                         <span>Pages</span>
@@ -374,7 +388,7 @@ ul.top-menu > li > a {
 						<li><a href="addfaculty">Faculty</a></li>
                         <li><a href="#">Faculty Table</a></li>
                     </ul>
-                </li>
+                </li> -->
                
             </ul>            
         </div>

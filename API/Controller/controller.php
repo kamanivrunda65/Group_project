@@ -17,10 +17,15 @@ class controller extends model{
                                 echo "Username and password is required.";
                             }
                         break;
+
+
+
                     case '/class':
                         $Res = $this->select("batch");
                         echo json_encode($Res);
                         break;
+
+
                     case '/adduser':
                        $data=json_decode(file_get_contents("php://input"),true);
                        if($data['user_name']!="" && $data['user_email']!="" && $data['user_mobile_no']!="" && $data['user_password']!="" && $data['user_course']!="" && $data['user_class']!="")
@@ -32,6 +37,8 @@ class controller extends model{
                         }
                     
                        break;
+
+
                     case '/loginuser':
                         $data=json_decode(file_get_contents('php://input'),true);
                         if($data['user_name']!="" && $data['user_password']!=""){
@@ -40,6 +47,19 @@ class controller extends model{
                             }else{
                                 echo "Username and password is required.";
                             }
+                        break;
+
+
+                    case '/alluser':
+                        $Res = $this->select("users");
+                        echo json_encode($Res);
+                        break;
+
+                     case '/allmaterial':
+                        $Res = $this->select("material");
+                        echo json_encode($Res);
+                        break;
+  
                     default:
                         # code...
                         break;

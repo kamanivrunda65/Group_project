@@ -7,12 +7,14 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      Users Table
+      Materials
     </div>
     
     <div class="row w3-res-tb">
-      
-      <div class="col-sm-9"></div>
+      <div class="col-sm-2 m-b-xs">
+      <a href="materialupload"><button  class="btn btn-success">Upload Material</button></a>
+      </div>
+      <div class="col-sm-7"></div>
       <div class="col-sm-3">
       <div class="input-group">
           <input type="text" class="input-sm form-control" placeholder="Search">
@@ -36,21 +38,17 @@
         }}'>
         <thead>
           <tr>
-            <!-- <th data-breakpoints="xs">ID</th> -->
-            <th>No</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Mobile Number</th>
+            <th >No</th>
+            <th>Material</th>
             <th>Course</th>
-            <th>Class</th>
-            <th data-breakpoints="xs">Password</th>
+            <th>Subject</th>
             <th data-breakpoints="xs">Date</th>
-            <th data-breakpoints="xs sm md" data-title="DOB">Change</th>
+            <th data-breakpoints="xs sm md" data-title="DOB">Download File</th>
           </tr>
         </thead>
         <tbody id="displaydata">
            
-         
+       
           
           
           
@@ -83,25 +81,24 @@
 </section>
 <script>
 		
-		fetch("http://localhost/Group_project/API/alluser").then(response=>response.json()).then((res)=>{
+		fetch("http://localhost/Group_project/API/allmaterial").then(response=>response.json()).then((res)=>{
             //console.log(res.Data);
             htmlresponse = '';
             count=1;
 				res.Data.forEach(element => {
-          if(element.role_id=="2"){
+        
 					htmlresponse += `<tr data-expanded="true">
                             <td>${count}</td>
-                            <td>${element.user_name}</td>
-                            <td>${element.user_email}</td>
-                            <td>${element.user_mobile_no}</td>
-                            <td>${element.user_course}</td>
-                            <td>${element.user_class}</td>
-                            <td>${element.user_password}</td>
+                            <td>${element.material_name}</td>
+                            <td>${element.material_course}</td>
+                            <td>${element.material_subject}</td>
+                           
                             <td>${element.date}</td>
-                            <td><a href="#"><button >Edit</button></a><a href="#"><button >Delete</button></a></td>
+                            <td><a href="downloadfile?material_id=${element.material_id}" ><button type="submit" class="btn btn-info">DOWNLOAD</button></a></td>
+                           
                             </tr>`
                          count++;
-          }
+          
 				})
 				 //console.log(htmlresponse);
 				 $("#displaydata").html(htmlresponse)

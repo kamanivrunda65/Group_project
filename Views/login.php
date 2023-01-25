@@ -85,7 +85,8 @@
              console.log(res);
              if(res.Code==1){
                 document.cookie=`access_id=${res.Data[0].user_email}`;
-                if (res.Data[0].role_id==1) {
+                document.cookie=`role_id=${res.Data[0].role_id}`;
+                if (res.Data[0].role_id==1 || res.Data[0].role_id==3) {
                     window.location.href="http://localhost/Group_project/admindashboard";
                 }else{
                     window.location.href="http://localhost/Group_project/home";
