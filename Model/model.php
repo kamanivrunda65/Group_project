@@ -46,24 +46,7 @@ class model{
     }
 
 
-    // public function class($class,$course){
-    //     $SQL="SELECT * FROM batch WHERE batch_course='$course' AND batch_class='$class'";
-    //     $SQLEx=$this->connection->query($SQL);
-    //     if($SQLEx->num_rows>0){
-    //         while($SQLEXFetch=$SQLEx->fetch_object()){
-    //             $SqlFetchData[]=$SQLEXFetch;
-    //         }
-    //         $ResponseData['Code']="1";
-    //         $ResponseData['Msg']="Success";
-    //         $ResponseData['Data']=$SqlFetchData;
-    //     }else{
-    //         $ResponseData['Code']="0";
-    //         $ResponseData['Msg']="Fail";
-    //         $ResponseData['Data']="0";
-
-    //     }
-    //     return $ResponseData;
-    // }
+  
 
 
     public function select($tbl, $where = ""){

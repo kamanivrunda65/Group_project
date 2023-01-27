@@ -59,6 +59,23 @@ class controller extends model{
                         $Res = $this->select("material");
                         echo json_encode($Res);
                         break;
+                    case '/searchuser':
+                        $data=json_decode(file_get_contents('php://input'),true);
+                        // echo "<pre>";
+                        // print_r($data);
+                        // echo "</pre>";
+                        if($data['search']!=""){
+                        $Res = $this->select_search("users",array("user_name"=>$data['search'],"user_email"=>$data['search'],"user_course"=>$data['search']));
+                        echo json_encode($Res);
+                        }else{
+                            echo "search data required.";
+                        }
+                        break;
+                    case '/deletedata':
+                        
+                        $Res=$this->delete("users",array("user_id"=>$_REQUEST['id']));
+                        echo json_encode($Res);
+                        break;
   
                     default:
                         # code...

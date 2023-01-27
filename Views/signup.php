@@ -45,8 +45,8 @@
 
 
                          <select name="user_class" onblur="checkreq(this)" >
-                            <option value="Online">Online Course</option>
-                            <option value="Offline">Offline Admission</option>
+                            <option value="OFFLINE">Online Course</option>
+                            <option value="OFFLINE">Offline Admission</option>
                         </select>
                         <select name="user_course" onblur="checkreq(this)">
                             <option value="JEE">JEE</option>

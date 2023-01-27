@@ -17,23 +17,33 @@ date_default_timezone_set('Asia/Kolkata');
                 file_put_contents("log/".$Filename."log.txt",$ErroeMesg,FILE_APPEND);
             }
         }
-        public function select($table){
-            $SQL="SELECT * FROM $table";
-            $SQLEx=$this->connection->query($SQL);
-            if($SQLEx->num_rows>0){
-                while($SQLEXFetch=$SQLEx->fetch_object()){
-                    $SqlFetchData[]=$SQLEXFetch;
-                }
-                $ResponseData['Code']="1";
-                $ResponseData['Msg']="Success";
-                $ResponseData['Data']=$SqlFetchData;
-            }else{
-                $ResponseData['Code']="0";
-                $ResponseData['Msg']="Fail";
-                $ResponseData['Data']="0";
-    
+        public function select($tbl, $where = ""){
+            $SQL = "SELECT * FROM $tbl"; //this is a dynamic parameter recv krya 
+            if ($where != "") {
+                    $SQL .= " WHERE ";
+                    foreach ($where as $key => $value) 
+                    {
+                        $SQL .= " $key = $value AND";
+                    }
+                $SQL = rtrim($SQL, "AND");
             }
-            return $ResponseData;
+            // echo $SQL;
+            // exit; 
+            $SQLEx = $this->connection->query($SQL);
+            if ($SQLEx->num_rows > 0) {
+                while ($Fetch = $SQLEx->fetch_object()) {
+                    $FetchData[] = $Fetch;
+                    }
+                    $Respose["Code"] = "1";
+                    $Respose["Msg"] = "Success";
+                    $Respose["Data"] = $FetchData;
+                } else {
+                    $Respose["Code"] = "0";
+                    $Respose["Msg"] = "Try again";
+                    $Respose["Data"] = 0;
+                }
+            return $Respose;
+            // echo $SQL; 
         }
         public function insert($table,$data){
             $arraykey=implode(",",array_keys($data));
@@ -75,6 +85,58 @@ date_default_timezone_set('Asia/Kolkata');
     
         }
 
-
+        public function select_search($tbl, $where = ""){
+            $SQL = "SELECT * FROM $tbl"; //this is a dynamic parameter recv krya 
+            if ($where != "") {
+                    $SQL .= " WHERE ";
+                    foreach ($where as $key => $value) 
+                    {
+                        $SQL .= " $key LIKE '%$value%' OR";
+                    }
+                $SQL = rtrim($SQL, "OR");
+            }
+            // echo $SQL;
+            // exit; 
+            $SQLEx = $this->connection->query($SQL);
+            if ($SQLEx->num_rows > 0) {
+                while ($Fetch = $SQLEx->fetch_object()) {
+                    $FetchData[] = $Fetch;
+                    }
+                    $Respose["Code"] = "1";
+                    $Respose["Msg"] = "Success";
+                    $Respose["Data"] = $FetchData;
+                } else {
+                    $Respose["Code"] = "0";
+                    $Respose["Msg"] = "Try again";
+                    $Respose["Data"] = 0;
+                }
+            return $Respose;
+            // echo $SQL; 
+        }
+        public function delete($tbl, $where = ""){
+            $SQL = "DELETE  FROM $tbl"; //this is a dynamic parameter recv krya 
+            if ($where != "") {
+                    $SQL .= " WHERE ";
+                    foreach ($where as $key => $value) 
+                    {
+                        $SQL .= " $key = '$value' AND";
+                    }
+                $SQL = rtrim($SQL, "AND");
+            }
+            // echo $SQL;
+            // exit; 
+            $SQLEx = $this->connection->query($SQL);
+            if ($SQLEx > 0) {
+                $ResponseData['Code']="1";
+                $ResponseData['Msg']="Success";
+                $ResponseData['Data']="1";
+            }else{
+                $ResponseData['Code']="0";
+                $ResponseData['Msg']="Error while inserting";
+                $ResponseData['Data']="0";
+            }
+            return $ResposeData;
+            // echo $SQL; 
+        }
     }
 ?>

@@ -14,13 +14,14 @@
       
       <div class="col-sm-9"></div>
       <div class="col-sm-3">
-      <div class="input-group">
-          <input type="text" class="input-sm form-control" placeholder="Search">
+       <form method="post" id="searchdata"> 
+        <div class="input-group">
+          <input type="text" class="input-sm form-control" name="search"  placeholder="Search">
           <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
+            <button class="btn btn-sm btn-default" type="submit" onclick="searchdata()">Go!</button>
           </span>
         </div>
-        
+       </form>
       </div>
     </div>
     <div class="table-responsive">
@@ -82,7 +83,51 @@
  
 </section>
 <script>
-		
+  function searchdata(){
+    event.preventDefault();     
+        let FormData = $("#searchdata").serializeArray() ;  
+        console.log(FormData);
+        var result = {};
+        $.each(FormData, function() {
+            result[this.name] = this.value;   
+        });
+        //console.log(result);
+        let header_for_post = {
+            method: 'POST', 
+            body: JSON.stringify(result) 
+        }
+        //console.log(header_for_post);
+         fetch("http://localhost/Group_project/API/searchuser", header_for_post).then(response => response.json()).then((res) => {
+            //console.log(res);
+            htmlresponse = '';
+            count=1;
+				res.Data.forEach(element => {
+          if(element.role_id=="2"){
+					htmlresponse += `<tr data-expanded="true">
+                            <td>${count}</td>
+                            <td>${element.user_name}</td>
+                            <td>${element.user_email}</td>
+                            <td>${element.user_mobile_no}</td>
+                            <td>${element.user_course}</td>
+                            <td>${element.user_class}</td>
+                            <td>${element.user_password}</td>
+                            <td>${element.date}</td>
+                            <td><a href="#"><button class="btn btn-success">Edit</button></a>  <button class="btn btn-danger" onclick="deletedata(${element.user_id})">Delete</button></td>
+                            </tr>`
+                         count++;
+          }
+				})
+				 //console.log(htmlresponse);
+				 $("#displaydata").html(htmlresponse)
+  })
+}
+function deletedata(id){
+    //console.log(id)
+    fetch("http://localhost/Group_project/API/deletedata?id="+id).then(response=>response.json()).then((res)=>{
+      console.log(res)
+    })
+}
+	
 		fetch("http://localhost/Group_project/API/alluser").then(response=>response.json()).then((res)=>{
             //console.log(res.Data);
             htmlresponse = '';
@@ -98,7 +143,7 @@
                             <td>${element.user_class}</td>
                             <td>${element.user_password}</td>
                             <td>${element.date}</td>
-                            <td><a href="#"><button >Edit</button></a><a href="#"><button >Delete</button></a></td>
+                            <td><a href="#"><button class="btn btn-success">Edit</button></a>  <button class="btn btn-danger" onclick="deletedata(${element.user_id})">Delete</button></td>
                             </tr>`
                          count++;
           }
@@ -106,5 +151,6 @@
 				 //console.log(htmlresponse);
 				 $("#displaydata").html(htmlresponse)
 		})
+  
 	</script>
-  <!-- <a href="register?class=${element.batch_class}&course=${element.batch_course}"><button >Register</button></a><br> -->
+ // <!-- <a href="register?class=${element.batch_class}&course=${element.batch_course}"><button >Register</button></a><br> -->

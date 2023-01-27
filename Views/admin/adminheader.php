@@ -332,7 +332,7 @@ ul.top-menu > li > a {
             <ul class="dropdown-menu extended logout">
                 <li><a href="#"><i class=" fa fa-suitcase"></i><span class="username">John Doe</span>Profile</a></li>
                 <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
+                <li><a href="logout"><i class="fa fa-key"></i> Log Out</a></li>
             </ul>
         </li>
     </ul>
@@ -358,7 +358,7 @@ ul.top-menu > li > a {
                
                 <li>
                     <a  href="userstable">
-                        <i class="fa fa-user"></i>
+                        <i class="fa fa-users"></i>
                         <span>Students</span>
                     </a>
                 </li>

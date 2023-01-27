@@ -77,11 +77,12 @@ class controller extends model{
                
                 case '/logout':
                     setcookie("access_id", '', time()-7000000);
+                    setcookie("role_id", '', time()-7000000);
                     header("location:login");
                     
                     break;   
-                 case '/adminlogin':
-                    include_once('Views/admin/login.php');
+                //  case '/adminlogin':
+                //     include_once('Views/admin/login.php');
                     break;
                 case '/privacy':
                     include_once('Views/header.php');
@@ -153,8 +154,8 @@ class controller extends model{
                         if($Res['Code'] == 1){
                                 
                                 header("location:materialupload");
+                                print_r($file);
                                 
-                            
                             }
                             else{
                                 echo "Error";
