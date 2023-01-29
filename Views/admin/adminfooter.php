@@ -1,8 +1,4 @@
- <!-- footer -->
- <div class="footer">
-			
-		  </div>
-  <!-- / footer -->
+
 </section>
 <!--main content end-->
 </section>

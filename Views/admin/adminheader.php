@@ -3,7 +3,7 @@
 
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
-<title>Visitors an Admin Panel Category Bootstrap Responsive Website Template | Gallery :: w3layouts</title>
+<title>Institute</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -210,9 +210,9 @@ ul.top-menu > li > a {
 
 
 .notify-row {
-    float: left;
+    float: right;
     margin-top: 20px;
-    margin-left: 25px;
+    
     margin-bottom: 23px;
 }
 </style>
@@ -228,7 +228,7 @@ ul.top-menu > li > a {
 <div class="brand">
 
     <a href="index.html" class="logo">
-        VISITORS
+        LOGO
     </a>
     <div class="sidebar-toggle-box">
         <div class="fa fa-bars"></div>

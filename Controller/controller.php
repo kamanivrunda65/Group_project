@@ -198,7 +198,16 @@ class controller extends model{
                         echo "<script>alert('Error while inserting try after sometime !!!!')</script>";
                     }
                     break;
-                 
+                case '/profile':
+                    include_once('Views/admin/adminheader.php');
+                    include_once('Views/admin/profile.php');
+                    include_once('Views/admin/adminfooter.php');
+                    break;
+                 case '/mail':
+                    include_once('Views/admin/adminheader.php');
+                    include_once('Views/admin/mail.php');
+                    include_once('Views/admin/adminfooter.php');
+                    break;
                 
                 default :
                     
