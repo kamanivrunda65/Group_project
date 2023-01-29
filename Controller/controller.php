@@ -172,20 +172,28 @@ class controller extends model{
                     $Res = $this->select('material',array("material_id"=>$_REQUEST['material_id']));
                     if ($Res['Code'] == "1") {
                       
-                         //header("location:materialupload");
-                        //print_r($Res['Data'][0]->material_name);
-                        $file=$Res['Data'][0]->material_name;
+                        //  //header("location:materialupload");
+                        // //print_r($Res['Data'][0]->material_name);
+                        // $file=$Res['Data'][0]->material_name;
                         
-                        $file_location="assets/material/".$file;
-                        //$size = filesize($file_location);
-                        //echo $size;
+                        // $file_location="assets/material/".$file;
+                        // //$size = filesize($file_location);
+                        // //echo $size;
+                        // header('Content-Type: application/octet-stream');
+                        // header('Content-Disposition: attachment; filename="' . basename($file_location) . '"');
+                        // header('Pragma: public');
+                        // header('Content-Length: ' . filesize($file_location));
+                        
+                        // readfile($file_location);
+                        $file=$Res['Data'][0]->material_name;
+                        $file1=stristr($file,".",true);
+                        //echo $file;
+                        $file_location="assets/material/".$file1.".pdf";
                         header('Content-Type: application/octet-stream');
                         header('Content-Disposition: attachment; filename="' . basename($file_location) . '"');
                         header('Pragma: public');
                         header('Content-Length: ' . filesize($file_location));
-                        
                         readfile($file_location);
-                        
                     }else{
                         echo "<script>alert('Error while inserting try after sometime !!!!')</script>";
                     }

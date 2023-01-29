@@ -114,7 +114,7 @@
                             <td>${element.user_email}</td>
                             <td>${element.user_mobile_no}</td>
                             <td>${element.user_course}</td>
-                            <td>${element.user_class}</td>
+                            
                             <td>${element.user_password}</td>
                             <td>${element.date}</td>
                             <td><button class="btn btn-success">Edit</button>  <button class="btn btn-danger" onclick="deletedata(${element.user_id})">Delete</button></td>

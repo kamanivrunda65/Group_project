@@ -1,30 +1,25 @@
 
 <!DOCTYPE html>
 
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
-<title>Admin</title>
+<title>Visitors an Admin Panel Category Bootstrap Responsive Website Template | Gallery :: w3layouts</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="<?php echo $this->base_url;?>/admin_assets/img/favicon.png" rel="icon">
+<meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- bootstrap-css -->
-<link rel="stylesheet" href="assets/admin_assets/css/bootstrap.min.css" >
-<!-- //bootstrap-css -->
-<!-- Custom CSS -->
-<link href="assets/admin_assets/css/style.css" rel='stylesheet' type='text/css' />
-<!-- <link href="assets/admin_assets/css/style-responsive.css" rel="stylesheet"/> -->
+<link rel="stylesheet" href="<?php echo  $this->BaseURLDynamic;?>admin_assets/css/bootstrap.min.css" >
+<link href="<?php echo  $this->BaseURLDynamic;?>admin_assets/css/style.css" rel='stylesheet' type='text/css' />
+<link href="<?php echo  $this->BaseURLDynamic;?>admin_assets/css/style-responsive.css" rel="stylesheet"/>
+<link rel="stylesheet" href="<?php echo  $this->BaseURLDynamic;?>admin_assets/css/lightbox.css">
 <!-- <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'> -->
-<!-- <link rel="stylesheet" href="assets/admin_assets/css/font.css" type="text/css"/> -->
-<link href="assets/admin_assets/css/font-awesome.css" rel="stylesheet"> 
-<!-- <link rel="stylesheet" href="assets/admin_assets/css/morris.css" type="text/css"/> -->
-<!-- <link rel="stylesheet" href="assets/admin_assets/css/monthly.css"> -->
-<script src="assets/admin_assets/js/jquery2.0.3.min.js"></script>
-<!-- <script src="assets/admin_assets/js/raphael-min.js"></script> -->
-<!-- <script src="assets/admin_assets/js/morris.js"></script> -->
+<link rel="stylesheet" href="<?php echo  $this->BaseURLDynamic;?>admin_assets/css/font.css" type="text/css"/>
+<link href="<?php echo  $this->BaseURLDynamic;?>admin_assets/css/font-awesome.css" rel="stylesheet"> 
+<script src="<?php echo  $this->BaseURLDynamic;?>admin_assets/js/jquery2.0.3.min.js"></script>
 </head>
 <body>
-<!-- <script src="../../../../../../../m.servedby-buysellads.com/monetization.js" type="text/javascript"></script> -->
+<script src="../../../../../../../m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
 <script>
 (function(){
 	if(typeof _bsa !== 'undefined' && _bsa) {
@@ -60,7 +55,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 </script>
 
 <meta name="robots" content="noindex">
-<body><link rel="stylesheet" href="../../../../../../assests/assets/admin_assets/css/font-awesome.min.css">
+<body><link rel="stylesheet" href="../../../../../../assests/css/font-awesome.min.css">
 <!-- New toolbar-->
 <style>
 * {
@@ -204,18 +199,26 @@ RIGHT SIDEBAR TOGGLE SECTION
 
 ul.top-menu > li > a {
     color: #fff;
-    font-size: 16px;
+    font-size: 15px;
     background: #8b5c7e;
-    padding: 6px 10px;
-    margin-right: 15px;
+    padding: 7px 9px;
+    margin-right: 17px;
     border-radius: 50%;
     -webkit-border-radius: 50%;
-    margin-left: 8px !important;
+    padding-right: !important;
 }
 
+
+.notify-row {
+    float: left;
+    margin-top: 20px;
+    margin-left: 25px;
+    margin-bottom: 23px;
+}
 </style>
 
 
+   
 
 
 <section id="container">
@@ -223,6 +226,7 @@ ul.top-menu > li > a {
 <header class="header fixed-top clearfix">
 <!--logo start-->
 <div class="brand">
+
     <a href="index.html" class="logo">
         VISITORS
     </a>
@@ -231,7 +235,6 @@ ul.top-menu > li > a {
     </div>
 </div>
 <!--logo end-->
-
 <div class="nav notify-row" id="top_menu">
     <!--  notification start -->
     

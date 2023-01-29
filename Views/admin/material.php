@@ -1,4 +1,4 @@
-<button  class="btn btn-success">Form in Modal</button>
+
 <section id="main-content">
 
 	<section class="wrapper">
