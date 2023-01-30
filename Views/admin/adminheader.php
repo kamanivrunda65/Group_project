@@ -19,7 +19,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="<?php echo  $this->BaseURLDynamic;?>admin_assets/js/jquery2.0.3.min.js"></script>
 </head>
 <body>
-<script src="../../../../../../../m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<!-- <script src="../../../../../../../m.servedby-buysellads.com/monetization.js" type="text/javascript"></script> -->
 <script>
 (function(){
 	if(typeof _bsa !== 'undefined' && _bsa) {
@@ -55,7 +55,8 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 </script>
 
 <meta name="robots" content="noindex">
-<body><link rel="stylesheet" href="../../../../../../assests/css/font-awesome.min.css">
+<body>
+    <!-- <link rel="stylesheet" href="../../../../../../assests/css/font-awesome.min.css"> -->
 <!-- New toolbar-->
 <style>
 * {
@@ -210,7 +211,7 @@ ul.top-menu > li > a {
 
 
 .notify-row {
-    float: right;
+    float: left;
     margin-top: 20px;
     
     margin-bottom: 23px;
@@ -363,6 +364,12 @@ ul.top-menu > li > a {
                     <a  href="userstable">
                         <i class="fa fa-users"></i>
                         <span>Students</span>
+                    </a>
+                </li>
+                <li>
+                    <a  href="inbox">
+                        <i class="fa fa-envelope"></i>
+                        <span>Email inbox</span>
                     </a>
                 </li>
                 <?php } }?>

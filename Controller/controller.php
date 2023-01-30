@@ -172,40 +172,59 @@ class controller extends model{
                     $Res = $this->select('material',array("material_id"=>$_REQUEST['material_id']));
                     if ($Res['Code'] == "1") {
                       
-                        //  //header("location:materialupload");
-                        // //print_r($Res['Data'][0]->material_name);
-                        // $file=$Res['Data'][0]->material_name;
-                        
-                        // $file_location="assets/material/".$file;
-                        // //$size = filesize($file_location);
-                        // //echo $size;
-                        // header('Content-Type: application/octet-stream');
-                        // header('Content-Disposition: attachment; filename="' . basename($file_location) . '"');
-                        // header('Pragma: public');
-                        // header('Content-Length: ' . filesize($file_location));
-                        
-                        // readfile($file_location);
+                         //header("location:materialupload");
+                        //print_r($Res['Data'][0]->material_name);
                         $file=$Res['Data'][0]->material_name;
-                        $file1=stristr($file,".",true);
-                        //echo $file;
-                        $file_location="assets/material/".$file1.".pdf";
+                        
+                        $file_location="assets/material/".$file;
+                        //$size = filesize($file_location);
+                        //echo $size;
                         header('Content-Type: application/octet-stream');
                         header('Content-Disposition: attachment; filename="' . basename($file_location) . '"');
                         header('Pragma: public');
                         header('Content-Length: ' . filesize($file_location));
+                        
                         readfile($file_location);
+                       
                     }else{
                         echo "<script>alert('Error while inserting try after sometime !!!!')</script>";
                     }
                     break;
-                case '/profile':
+               
+                    case '/profile':
                     include_once('Views/admin/adminheader.php');
                     include_once('Views/admin/profile.php');
                     include_once('Views/admin/adminfooter.php');
                     break;
-                 case '/mail':
+                 case '/email':
                     include_once('Views/admin/adminheader.php');
                     include_once('Views/admin/mail.php');
+                    include_once('Views/admin/adminfooter.php');
+                    if(isset($_REQUEST['sendemail'])){
+                        array_pop($_REQUEST);
+                        //echo"<pre>";
+                        //print_r($_REQUEST);
+                        //print_r($_FILES);
+                        $email=$_COOKIE["access_id"];
+                        //echo $email;
+                        if ($_FILES['email_file']['error'] == 0) {
+                            $file = $_FILES['email_file']['name'];
+                        }
+                        $newArray=array_merge($_REQUEST,array("email_file"=>$file,"email_from"=>$email));
+                        //print_r($newArray);
+                        $Res=$this->insert("email",$newArray);
+                        if($Res['Code'] == 1){
+                               // $this->sendemail($_REQUEST["email_to"],$_REQUEST["email_sub"],$_REQUEST["email_msg"]);
+                                header("location:inbox");
+                            }
+                            else{
+                                echo "Error";
+                            }
+                    }
+                    break;
+                case '/inbox':
+                    include_once('Views/admin/adminheader.php');
+                    include_once('Views/admin/allmails.php');
                     include_once('Views/admin/adminfooter.php');
                     break;
                 

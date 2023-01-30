@@ -94,7 +94,7 @@
                             <td>${element.material_subject}</td>
                            
                             <td>${element.date}</td>
-                            <td><a href="downloadfile?material_id=${element.material_id}" ><button type="submit" class="btn btn-info">DOWNLOAD</button></a></td>
+                            <td><button type="submit" class="btn btn-info" onclick="download(${element.material_id})">DOWNLOAD</button></a></td>
                            
                             </tr>`
                          count++;
@@ -103,5 +103,12 @@
 				 //console.log(htmlresponse);
 				 $("#displaydata").html(htmlresponse)
 		})
+    function download(id){
+      //console.log(id);
+      fetch("http://localhost/Group_project/API/downloadfile?id="+id).then(response=>response.json()).then((res)=>{
+        //console.log(res);
+      });
+    }
 	</script>
   <!-- <a href="register?class=${element.batch_class}&course=${element.batch_course}"><button >Register</button></a><br> -->
+  <!-- <td><a href="downloadfile?material_id=${element.material_id}" ><button type="submit" class="btn btn-info">DOWNLOAD</button></a></td> -->

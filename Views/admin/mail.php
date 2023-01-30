@@ -1,13 +1,11 @@
 <style>
   .compose-mail input, .compose-mail input:focus {
     border: none;
-    padding: 0;
-    width: 80%;
-    float: right;
+    padding: 10px;
+    width: 90%;
+    float: left;
 }
-.change{
-    float:left;
-}
+
 </style>
 
 <!--main content start-->
@@ -21,11 +19,11 @@
             <div class="col-sm-3 com-w3ls">
                 <section class="panel">
                     <div class="panel-body">
-                        <a href="mail_compose.html"  class="btn btn-compose">
+                        <a href="email"  class="btn btn-compose">
                             Compose Mail
                         </a>
                         <ul class="nav nav-pills nav-stacked mail-nav">
-                            <li class="active"><a href="mail.php"> <i class="fa fa-inbox"></i> Inbox</a></li>
+                            <li class="active"><a href="inbox"> <i class="fa fa-inbox"></i> Inbox</a></li>
                             <li><a href="#"> <i class="fa fa-envelope-o"></i> Send Mail</a></li>
                             <li><a href="#"> <i class="fa fa-certificate"></i> Important</a></li>
                             <li><a href="#"> <i class="fa fa-file-text-o"></i> Drafts </a></a></li>
@@ -45,25 +43,27 @@
                     <div class="panel-body">
                        
                         <div class="compose-mail">
-                            <form role="form-horizontal" method="post">
+                            <form role="form-horizontal" method="post"  enctype="multipart/form-data" id="emailform">
                                 <div class="form-group">
                                     <label for="to" class="">To:</label>
-                                    <input type="text" tabindex="1" id="to" class="form-control">
+                                    <input type="text" tabindex="1" id="to" class="form-control" name="email_to" required>
 
                                 </div>
 
                                
                                 <div class="form-group">
-                                    <label for="subject" class="">Subject:</label>
-                                    <input type="text" tabindex="1" id="subject" class="form-control">
+                                    <label for="subject" class="">Sub:</label>
+                                    <input type="text" tabindex="1" id="subject" class="form-control" name="email_sub" required>
                                 </div>
 
                                 <div class="compose-editor">
-                                    <textarea class="wysihtml5 form-control" rows="9"></textarea>
-                                    <input type="file" class="default change">
+                                
+                                    <textarea class="wysihtml5 form-control" rows="9" name="email_msg" required></textarea>
+                                    <input type="file" class="default" name="email_file">
                                 </div>
+                               
                                 <div class="compose-btn">
-                                    <button class="btn btn-primary "><i class="fa fa-check"></i> Send</button>
+                                    <button class="btn btn-primary " name="sendemail"><i class="fa fa-check"></i> Send</button></a>
                                     <button class="btn btn-info"><i class="fa fa-times"></i> Discard</button>
                                     <button class="btn btn-warning">Draft</button>
                                 </div>
@@ -79,3 +79,21 @@
         <!-- page end-->
 		 </div>
 </section>
+<!-- <script>
+function email(){
+    event.preventDefault();
+    let Formdata=$("#emailform").serializeArray();
+    console.log(Formdata);
+    var result={};
+    $.each(Formdata,function(){
+        result[this.name]=this.value;
+    });
+    let email_post={
+        method: 'POST',
+        body:json.stringfy(result)
+    }
+    console.log(email_post);
+
+
+}
+</script> -->

@@ -2,8 +2,10 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+
 require ('vendor/autoload.php');
 include_once('Model/model.php');
+
 class controller extends model{
     public function __construct(){
             parent::__construct();
@@ -52,6 +54,9 @@ class controller extends model{
                                 echo "Username and password is required.";
                             }
                         break;
+                    case 'downloadfile':
+                        echo "sadfgh";
+                        break;
 
 
                     case '/alluser':
@@ -61,6 +66,10 @@ class controller extends model{
 
                      case '/allmaterial':
                         $Res = $this->select("material");
+                        echo json_encode($Res);
+                        break;
+                    case '/allemail':
+                        $Res = $this->select("email");
                         echo json_encode($Res);
                         break;
                     case '/searchuser':
@@ -80,7 +89,54 @@ class controller extends model{
                         $Res=$this->delete("users",array("user_id"=>$_REQUEST['id']));
                         echo json_encode($Res);
                         break;
-  
+                    
+                     case '/downloadfile' :
+                    //print_r($_REQUEST['material_id']);
+                    $Res = $this->select('material',array("material_id"=>$_REQUEST['id']));
+                    echo json_encode($Res);
+                    if ($Res['Code'] == "1") {
+                      
+                        print_r($Res);
+                        $file=$Res['Data'][0]->material_name;
+
+                        // $pdf=new FPDF();
+                        // $file = file_get_contents("assets/material/".$file);
+                        // $pdf->AddPage();
+                        // $pdf->SetFont('Arial','B',16);
+                        // $pdf->Cell(40,10,$file);
+                        // $pdf->Output('assets/material/biology.pdf','F');
+                        // header('Content-Type: application/pdf');
+                        // header('Content-Transfer-Encoding: binary');
+                        // header('Content-Disposition: attachment; filename="biology.pdf"');
+                        // echo $pdf->Output('', 'S');
+                        
+                        // $fileName = $file;
+                        // $pdf = new FPDI();
+                        // $pdf->setSourceFile($file);
+                        // $tplIdx = $pdf->importPage(1);
+                        // $pdf->useTemplate($tplIdx);
+                        // $pdf->SetTitle($fileName);
+                        // $pdf->SetFont('Helvetica', 'B', 20);
+                        // $pdf->SetTextColor(0, 0, 0);
+                        // $pdf->SetFontSize(10);
+                        // $var=$pdf->Output('assets/material/'.$fileName.'.pdf', 'F');
+                        // echo $var;
+
+
+                        // echo $file;
+                        // $file_location="assets/material/".$file;
+                        // header('Content-Type: application/pdf');
+                        // header('Content-Disposition: attachment; filename="' . basename($file_location) . '"');
+                        // header('Pragma: public');
+                        // header('Content-Length: ' . filesize($file_location));
+                        // readfile($file_location);
+
+
+                    }else{
+                        echo "<script>alert('Error while inserting try after sometime !!!!')</script>";
+                    }
+                    break; 
+
                     default:
                         # code...
                         break;
