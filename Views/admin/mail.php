@@ -59,11 +59,11 @@
                                 <div class="compose-editor">
                                 
                                     <textarea class="wysihtml5 form-control" rows="9" name="email_msg" required></textarea>
-                                    <input type="file" class="default" name="email_file">
+                                    <!-- <input type="file" class="default" name="email_file"> -->
                                 </div>
                                
                                 <div class="compose-btn">
-                                    <button class="btn btn-primary " name="sendemail"><i class="fa fa-check"></i> Send</button></a>
+                                    <button class="btn btn-primary " onclick="email()"><i class="fa fa-check"></i> Send</button></a>
                                     <button class="btn btn-info"><i class="fa fa-times"></i> Discard</button>
                                     <button class="btn btn-warning">Draft</button>
                                 </div>
@@ -79,21 +79,31 @@
         <!-- page end-->
 		 </div>
 </section>
-<!-- <script>
+<script>
 function email(){
     event.preventDefault();
     let Formdata=$("#emailform").serializeArray();
-    console.log(Formdata);
+    //console.log(Formdata);
     var result={};
     $.each(Formdata,function(){
         result[this.name]=this.value;
     });
     let email_post={
         method: 'POST',
-        body:json.stringfy(result)
+        body: JSON.stringify(result) 
     }
-    console.log(email_post);
-
+    //console.log(email_post);
+    fetch("http://localhost/Group_project/API/sendemail", email_post).then(response => response.json()).then((res) => {
+            // console.log(res);
+            if(res.Code==1){
+                
+                    window.location.href="http://localhost/Group_project/inbox";
+                
+             }else{
+                    alert("Email not send succesfully");
+                     window.location.href="http://localhost/Group_project/mail";
+             }
+         });
 
 }
-</script> -->
+</script>

@@ -214,7 +214,7 @@ class controller extends model{
                         //print_r($newArray);
                         $Res=$this->insert("email",$newArray);
                         if($Res['Code'] == 1){
-                               // $this->sendemail($_REQUEST["email_to"],$_REQUEST["email_sub"],$_REQUEST["email_msg"]);
+                               $this->sendemail($_REQUEST["email_to"],$_REQUEST["email_sub"],$_REQUEST["email_msg"]);
                                 header("location:inbox");
                             }
                             else{
@@ -225,6 +225,17 @@ class controller extends model{
                 case '/inbox':
                     include_once('Views/admin/adminheader.php');
                     include_once('Views/admin/allmails.php');
+                    include_once('Views/admin/adminfooter.php');
+                    break;
+                case '/edituser':
+                    $userdatabyid=$this->select("users",array("user_id"=>$_GET['user_id']));
+                    include_once('Views/admin/adminheader.php');
+                    include_once('Views/admin/edituser.php');
+                    include_once('Views/admin/adminfooter.php');
+                    break;
+                 case '/menu':
+                    include_once('Views/admin/adminheader.php');
+                    include_once('Views/admin/menu.php');
                     include_once('Views/admin/adminfooter.php');
                     break;
                 

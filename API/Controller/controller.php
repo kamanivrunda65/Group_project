@@ -90,6 +90,17 @@ class controller extends model{
                         echo json_encode($Res);
                         break;
                     
+                     case '/edituserdata':
+                        $data=json_decode(file_get_contents('php://input'),true);
+                        $Res=$this->update("users",$data,array("user_id"=>$_REQUEST['id']));
+                        echo json_encode($Res);
+                        break;
+                    case '/navbar':
+                        
+                        $Res=$this->select("mainmenu");
+                        echo json_encode($Res);
+                        break;
+                    
                      case '/downloadfile' :
                     //print_r($_REQUEST['material_id']);
                     $Res = $this->select('material',array("material_id"=>$_REQUEST['id']));
@@ -123,13 +134,13 @@ class controller extends model{
                         // echo $var;
 
 
-                        // echo $file;
-                        // $file_location="assets/material/".$file;
-                        // header('Content-Type: application/pdf');
-                        // header('Content-Disposition: attachment; filename="' . basename($file_location) . '"');
-                        // header('Pragma: public');
-                        // header('Content-Length: ' . filesize($file_location));
-                        // readfile($file_location);
+                        echo $file;
+                        $file_location="assets/material/".$file;
+                        header('Content-Type: application/pdf');
+                        header('Content-Disposition: attachment; filename="' . basename($file_location) . '"');
+                        header('Pragma: public');
+                        header('Content-Length: ' . filesize($file_location));
+                        readfile($file_location);
 
 
                     }else{
@@ -137,6 +148,23 @@ class controller extends model{
                     }
                     break; 
 
+                    case "/sendemail":
+                        
+                        $data=json_decode(file_get_contents('php://input'),true);
+                        $email=$_COOKIE["access_id"];
+                        //echo $email;
+                        $newArray=array_merge($data,array("email_from"=>$email));
+                        //print_r($newArray);
+                        $Res=$this->insert("email",$newArray);
+                        if($Res['Code'] == 1){
+                           $this->sendemail($data["email_to"],$data["email_sub"],$data["email_msg"]);
+                            header("location:inbox");
+                        }
+                        else{
+                            echo "Error";
+                        }
+                        echo json_encode($Res);
+                        break;
                     default:
                         # code...
                         break;

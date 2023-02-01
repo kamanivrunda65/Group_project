@@ -126,7 +126,7 @@
                             <td class="view-message dont-show"><a href="#">${element.email_to}</a></td>
                             <td class="view-message"><a href="#">${element.email_msg}</a></td>
                             
-                            <td class="view-message text-right">${element.email_date}</td>
+                            <td class="view-message text-right">${element.date}</td>
                         </tr>`
                          
           

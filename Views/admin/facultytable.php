@@ -117,7 +117,7 @@
                             
                             <td>${element.user_password}</td>
                             <td>${element.date}</td>
-                            <td><button class="btn btn-success">Edit</button>  <button class="btn btn-danger" onclick="deletedata(${element.user_id})">Delete</button></td>
+                            <td><a href="edituser?user_id=${element.user_id}"><button class="btn btn-success">Edit</button></a>  <button class="btn btn-danger" onclick="deletedata(${element.user_id})">Delete</button></td>
                             </tr>`
                          count++;
           }
@@ -152,7 +152,7 @@ function deletedata(id){
                            
                             <td>${element.user_password}</td>
                             <td>${element.date}</td>
-                            <td><button class="btn btn-success">Edit</button>  <button class="btn btn-danger" onclick="deletedata(${element.user_id})">Delete</button></td>
+                            <td><a href="edituser?user_id=${element.user_id}"><button class="btn btn-success">Edit</button></a>  <button class="btn btn-danger" onclick="deletedata(${element.user_id})">Delete</button></td>
                             </tr>`
                          count++;
                     }

@@ -46,23 +46,18 @@
                 </div>
                 <div class="col">
                     <div class="header_text">
-                        <ul>
-                        <li><a href="home">HOME</a></li>
-                            <li class="dropdown"><a href="currentaffair">CURRENT AFFAIRS<i
-                                        class="fa-solid fa-caret-down"></i></a>
-                                <ul class="dropdown-nav">
-                                    <li><a href="jee">JEE</a></li>
-                                    <li><a href="neet">NEET</a></li>
-                                    
-                                </ul>
+                        <ul id="displaydata">
+                            <!-- <li><a href="home">HOME</a></li>
+                            <li class="dropdown">
+                                <a href="currentaffair">CURRENT AFFAIRS<i class="fa-solid fa-caret-down"></i></a>
+                                    <ul class="dropdown-nav">
+                                        <li><a href="jee">JEE</a></li>
+                                        <li><a href="neet">NEET</a></li>
+                                    </ul>
                             </li>
                             <li><a href="material">MATERIALS</a></li>
                             <li><a href="contact">CONTACT US</a></li>
-                            <li><a href="about">ABOUT US</a></li>
-                            <!-- <?php //if(isset($_SESSION['UserData'])){?>
-                            <li ><a href="login"><button href="login" type="submit" class="button button1">LOGIN</button></a></li>
-                            <li ><a href="signup"><button href="signup" type="submit" class="button button1">SIGN UP</button></a></li>
-                            <?php //} ?> -->
+                            <li><a href="about">ABOUT US</a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -105,3 +100,33 @@
     <div class="marging"></div>
 
     <!-- -------------- section 1 --------------  -->
+    <script>
+    
+    fetch("http://localhost/Group_project/API/navbar").then(response=>response.json()).then((res)=>{
+        //console.log(res.Data);
+        htmlresponse = '';
+        
+            res.Data.forEach(element => {
+            
+                if(element.menu_parent == "0"){
+                htmlresponse += `<li class="dropdown"><a href="${element.menu_name}">${element.menu_title}</a><ul class="dropdown-nav">`
+                let id=element.menu_id;
+                
+                res.Data.forEach(element => {
+                    if(id==element.menu_parent){
+                        htmlresponse+=` 
+                                        <li><a href="${element.menu_name}">${element.menu_title}</a></li>
+                                        `
+                    }
+                })
+                
+                
+                htmlresponse +=`</ul></li>`;
+                }
+                     
+      
+            })
+             //console.log(htmlresponse);
+             $("#displaydata").html(htmlresponse)
+    })
+</script>

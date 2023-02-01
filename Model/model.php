@@ -77,6 +77,32 @@ class model{
         return $Respose;
         // echo $SQL; 
     }
+
+    public function update($tbl, $data, $where)
+    {
+        $SQL = "UPDATE users SET ";
+        foreach ($data as $key => $value) {
+            $SQL .= " $key ='$value',";
+        }
+        $SQL = rtrim($SQL, ",");
+        $SQL .= " WHERE ";
+        foreach ($where as $key => $value) {
+            $SQL .= " $key = $value AND";
+        }
+        $SQL = rtrim($SQL, "AND");
+        echo $SQL;
+        $SQLEx = $this->connection->query($SQL);
+        if ($SQLEx > 0) {
+            $Respose["Code"] = "1";
+            $Respose["Msg"] = "Success";
+            $Respose["Data"] = "1";
+        } else {
+            $Respose["Code"] = "0";
+            $Respose["Msg"] = "Try again";
+            $Respose["Data"] = 0;
+        }
+        return $Respose;
+    }
 }
 
 ?>

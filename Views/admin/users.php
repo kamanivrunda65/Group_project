@@ -123,10 +123,11 @@
 }
 function deletedata(id){
     //console.log(id)
-    fetch("http://localhost/Group_project/API/deletedata?id="+id).then(response=>response.json()).then((res)=>{
+    fetch("http://localhost/Group_project/API/deletedata?user_id="+id).then(response=>response.json()).then((res)=>{
       console.log(res)
     })
 }
+
 	
 		fetch("http://localhost/Group_project/API/alluser").then(response=>response.json()).then((res)=>{
             //console.log(res.Data);
@@ -137,13 +138,13 @@ function deletedata(id){
 					htmlresponse += `<tr data-expanded="true">
                             <td>${count}</td>
                             <td>${element.user_name}</td>
-                            <td>${element.user_email}</td>
+                            <td><a href="mail?email=${element.user_email}">${element.user_email}</a></td>
                             <td>${element.user_mobile_no}</td>
                             <td>${element.user_course}</td>
                             <td>${element.user_class}</td>
                             <td>${element.user_password}</td>
                             <td>${element.date}</td>
-                            <td><a href="#"><button class="btn btn-success">Edit</button></a>  <button class="btn btn-danger" onclick="deletedata(${element.user_id})">Delete</button></td>
+                            <td><a href="edituser?user_id=${element.user_id}"><button class="btn btn-success">Edit</button></a>  <button class="btn btn-danger" onclick="deletedata(${element.user_id})">Delete</button></td>
                             </tr>`
                          count++;
           }
