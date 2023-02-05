@@ -17,27 +17,7 @@ class controller extends model{
                     include_once('Views/header.php');
                     include_once('Views/mainpage.php');
                     include_once('Views/footer.php');
-                    
-                    if(isset($_REQUEST['inquiry'])){
-                        array_pop($_REQUEST);
-                        $course=$_REQUEST['course'];
-                        $class=$_REQUEST['class'];
-                        $Res=$this->insert("inquiry",$_REQUEST);
-                        if ($Res['Code'] == 1) {
-                            $_SESSION['UserData']= $Res['Data'][0];
-                        
-                           if ($course == 'JEE') {
-                               header("location:jee");
-                           } else {
-                               header("location:neet");
-                            }
-                           
-                       }else {
-                               echo "<script>alert('invalid user crediantials')</script>";
-                           } 
-                        }
-                    
-                        break;
+                    break;
                 
                  case '/contact':
                     include_once('Views/header.php');
@@ -81,9 +61,8 @@ class controller extends model{
                     header("location:login");
                     
                     break;   
-                //  case '/adminlogin':
-                //     include_once('Views/admin/login.php');
-                    break;
+                
+                
                 case '/privacy':
                     include_once('Views/header.php');
                     include_once('Views/privacy.php');
@@ -197,38 +176,17 @@ class controller extends model{
                     include_once('Views/admin/adminfooter.php');
                     break;
                  case '/email':
+                   
                     include_once('Views/admin/adminheader.php');
                     include_once('Views/admin/mail.php');
                     include_once('Views/admin/adminfooter.php');
-                    if(isset($_REQUEST['sendemail'])){
-                        array_pop($_REQUEST);
-                        //echo"<pre>";
-                        //print_r($_REQUEST);
-                        //print_r($_FILES);
-                        $email=$_COOKIE["access_id"];
-                        //echo $email;
-                        if ($_FILES['email_file']['error'] == 0) {
-                            $file = $_FILES['email_file']['name'];
-                        }
-                        $newArray=array_merge($_REQUEST,array("email_file"=>$file,"email_from"=>$email));
-                        //print_r($newArray);
-                        $Res=$this->insert("email",$newArray);
-                        if($Res['Code'] == 1){
-                               $this->sendemail($_REQUEST["email_to"],$_REQUEST["email_sub"],$_REQUEST["email_msg"]);
-                                header("location:inbox");
-                            }
-                            else{
-                                echo "Error";
-                            }
-                    }
-                    break;
+                   break;
                 case '/inbox':
                     include_once('Views/admin/adminheader.php');
                     include_once('Views/admin/allmails.php');
                     include_once('Views/admin/adminfooter.php');
                     break;
                 case '/edituser':
-                    $userdatabyid=$this->select("users",array("user_id"=>$_GET['user_id']));
                     include_once('Views/admin/adminheader.php');
                     include_once('Views/admin/edituser.php');
                     include_once('Views/admin/adminfooter.php');
@@ -238,9 +196,30 @@ class controller extends model{
                     include_once('Views/admin/menu.php');
                     include_once('Views/admin/adminfooter.php');
                     break;
-                
+                case '/frontview':
+                    include_once('Views/admin/adminheader.php');
+                    include_once('Views/admin/menu.php');
+                    include_once('Views/admin/adminfooter.php');
+                    break;
+                case '/addview':
+                    include_once('Views/admin/adminheader.php');
+                    include_once('Views/admin/addview.php');
+                    include_once('Views/admin/popupbox.php');
+                    include_once('Views/admin/adminfooter.php');
+                    break;
+                case '/viewtable':
+                    include_once('Views/admin/adminheader.php');
+                    include_once('Views/admin/viewtable.php');
+                    include_once('Views/admin/adminfooter.php');
+                    break;
+                case '/maincopy':
+                    include_once('Views/header.php');
+                    include_once('Views/mainindex.php');
+                    include_once('Views/footer.php');
+                    break;
+
                 default :
-                    
+                
                     break;
             }
         }

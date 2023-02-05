@@ -65,7 +65,7 @@
             </div>
         </div>
     </section>
-<?php if(isset($_SESSION['UserData'])) { ?>
+<?php if(isset($_COOKIE["inquiry"]) || isset($_COOKIE["access_id"])) { ?>
   
     
   <!-- -------------- section 3 --------------  -->
@@ -79,22 +79,7 @@
                     </div>
                 </div>
                 </center>
-            <!-- <div class="row">
-                <div class="col_25">
-                </div>
-                <div class="col_25">
-                    <div class="section_text ">
-                        <a href="?jeeonline">JEE(Online Class)</a>
-                    </div>
-                </div>
-                <div class="col_25">
-                    <div class="section_text">
-                        <a href="?jeeoffline">JEE(Offline Class)</a>
-                    </div>
-                </div>
-                <div class="col_25">
-                </div>
-            </div>-->
+          
             
         </div>
     </section>
@@ -102,7 +87,7 @@
 
   <section class="current_se_3">
         <div class="container">
-            <div class="row" id="displaydata">
+            <div class="row" id="displayclass">
 
                
                
@@ -131,7 +116,7 @@
 					
 				})
 				 //console.log(htmlresponse);
-				 $("#displaydata").html(htmlresponse)
+				 $("#displayclass").html(htmlresponse)
 		})
 	</script>
     <?php } ?>

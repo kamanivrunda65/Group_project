@@ -127,6 +127,10 @@ function deletedata(id){
       console.log(res)
     })
 }
+function edituser(id){
+    //console.log(id);
+    window.location.href = "edituser?user_id="+id;
+}
 
 	
 		fetch("http://localhost/Group_project/API/alluser").then(response=>response.json()).then((res)=>{
@@ -138,13 +142,13 @@ function deletedata(id){
 					htmlresponse += `<tr data-expanded="true">
                             <td>${count}</td>
                             <td>${element.user_name}</td>
-                            <td><a href="mail?email=${element.user_email}">${element.user_email}</a></td>
+                            <td><a href="email?email=${element.user_email}">${element.user_email}</a></td>
                             <td>${element.user_mobile_no}</td>
                             <td>${element.user_course}</td>
                             <td>${element.user_class}</td>
                             <td>${element.user_password}</td>
                             <td>${element.date}</td>
-                            <td><a href="edituser?user_id=${element.user_id}"><button class="btn btn-success">Edit</button></a>  <button class="btn btn-danger" onclick="deletedata(${element.user_id})">Delete</button></td>
+                            <td><button class="btn btn-success" onclick="edituser(${element.user_id})">Edit</button>  <button class="btn btn-danger" onclick="deletedata(${element.user_id})">Delete</button></td>
                             </tr>`
                          count++;
           }

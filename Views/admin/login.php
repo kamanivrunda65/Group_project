@@ -1,14 +1,8 @@
 
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE html>
 
-<!-- Mirrored from demo.w3layouts.com/demos_new/template_demo/30-05-2017/visitors-demo_Free/217035454/web/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Jan 2023 05:45:17 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 <title>Visitors an Admin Panel Category Bootstrap Responsive Website Template | Login :: w3layouts</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">

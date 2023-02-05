@@ -46,7 +46,7 @@
                             <form role="form-horizontal" method="post"  enctype="multipart/form-data" id="emailform">
                                 <div class="form-group">
                                     <label for="to" class="">To:</label>
-                                    <input type="text" tabindex="1" id="to" class="form-control" name="email_to" required>
+                                    <input type="text" tabindex="1" id="to" class="form-control" name="email_to" value="<?php if(isset($_GET['email'])){echo $_GET['email'];} ?>" required>
 
                                 </div>
 

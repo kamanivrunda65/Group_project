@@ -10,20 +10,7 @@
   Materials
 </div>
 
-<!-- <div class="row w3-res-tb">
-    <div class="col-sm-2 m-b-xs">
-    <a href="#myModal-1" data-toggle="modal" class="btn btn-warning">Insert Menu</a>
-  </div>
-  <div class="col-sm-7"></div>
-        <div class="col-sm-3">
-        <div class="input-group">
-            <input type="text" class="input-sm form-control" placeholder="Search">
-            <span class="input-group-btn">
-                <button class="btn btn-sm btn-default" type="button">Go!</button>
-            </span>
-        </div> 
-    </div>
-</div> -->
+
 <div class="table-responsive">
 <table class="table" ui-jq="footable" ui-options='{
     "paging": {
@@ -40,7 +27,7 @@
         <th >No</th>
         <th>Menu Title</th>
         <th>Menu name</th>
-        <th>Menu Category</th>
+        
         <th>Menu Parent</th>
         <th>Change</th>
       </tr>
@@ -124,6 +111,20 @@
 
  -->
 <script>
+
+
+function statuschange(id){
+  //console.log(id)
+  fetch("http://localhost/Group_project/API/menustatus?menu_id="+id).then(response=>response.json()).then((res)=>{
+      console.log(res);
+      if(res.Code=="1"){
+        window.location.href="http://localhost/Group_project/menu";
+      }
+      else{
+        window.location.href="http://localhost/Group_project/facultytable";
+      }
+    })
+}
     
     fetch("http://localhost/Group_project/API/navbar").then(response=>response.json()).then((res)=>{
         //console.log(res.Data);
@@ -135,12 +136,17 @@
                         <td>${count}</td>
                         <td>${element.menu_title}</td>
                         <td>${element.menu_name}</td>
-                        <td>${element.menu_category}</td>
+                      
                        
                         <td>${element.menu_parent}</td>
-                        <td><a href="#" ><button type="submit" class="btn btn-info">Edit</button></a></td>
-                       
-                        </tr>`
+                        <td><button type="submit" class="btn btn-info">Edit</button>   <button type="submit" class="btn btn-danger">Delete</button>`
+                          if(element.menu_status == "0"){
+                            htmlresponse +=`  <button type="submit" class="btn btn-primary" onclick="statuschange(${element.menu_id})">Disable</button>`
+                          }
+                          else{
+                            htmlresponse +=`  <button type="submit" class="btn btn-primary" onclick="statuschange(${element.menu_id})">Inable</button>`
+                          }
+                          htmlresponse +=`</td></tr>`
                      count++;
       
             })

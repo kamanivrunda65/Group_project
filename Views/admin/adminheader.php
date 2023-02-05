@@ -387,6 +387,24 @@ ul.top-menu > li > a {
                         <span>Faculty</span>
                     </a>
                 </li>
+                <li>
+                    <a  href="menu">
+                        <i class="fa fa-bars"></i>
+                        <span>Navigation Bar</span>
+                    </a>
+                </li>
+                <li>
+                    <a  href="viewtable">
+                        <i class="fa fa-table"></i>
+                        <span>Sections</span>
+                    </a>
+                </li>
+                <li>
+                    <a  href="addview">
+                        <i class="fa fa-tasks"></i>
+                        <span>Add Section</span>
+                    </a>
+                </li>
                 <?php } }?>
                 <!-- <li class="sub-menu">
                     <a href="javascript:;">

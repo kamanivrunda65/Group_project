@@ -77,7 +77,7 @@
                     </div>
                 </div>
                 
-                <?php } elseif(isset($_SESSION['UserData'])){?>
+                <?php } elseif(isset($_COOKIE["inquiry"])){?>
                     <div class="col">
                             <a href="login"><button class="button button1">LOGIN</button></a>
                             <a href="register"><button class="button button1">SIGN UP</button></a>
@@ -108,15 +108,13 @@
         
             res.Data.forEach(element => {
             
-                if(element.menu_parent == "0"){
+                if(element.menu_parent == "0" && element.menu_status=="0"){
                 htmlresponse += `<li class="dropdown"><a href="${element.menu_name}">${element.menu_title}</a><ul class="dropdown-nav">`
                 let id=element.menu_id;
                 
                 res.Data.forEach(element => {
-                    if(id==element.menu_parent){
-                        htmlresponse+=` 
-                                        <li><a href="${element.menu_name}">${element.menu_title}</a></li>
-                                        `
+                    if(id==element.menu_parent && element.menu_status=="0"){
+                        htmlresponse+=`<li><a href="${element.menu_name}">${element.menu_title}</a></li> `
                     }
                 })
                 

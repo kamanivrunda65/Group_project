@@ -27,7 +27,7 @@ date_default_timezone_set('Asia/Kolkata');
                     }
                 $SQL = rtrim($SQL, "AND");
             }
-            // echo $SQL;
+            //echo $SQL;
             // exit; 
             $SQLEx = $this->connection->query($SQL);
             if ($SQLEx->num_rows > 0) {
@@ -49,8 +49,9 @@ date_default_timezone_set('Asia/Kolkata');
             $arraykey=implode(",",array_keys($data));
             $arrayvalue=implode("','",$data);
              $SQL="INSERT INTO $table ($arraykey) VALUES ('$arrayvalue')";
+             //echo $SQL;
             $SQLEx=$this->connection->query($SQL);
-        
+            
             if ($SQLEx > 0) {
                 $ResponseData['Code']="1";
                 $ResponseData['Msg']="Success";
@@ -140,7 +141,7 @@ date_default_timezone_set('Asia/Kolkata');
         }
         public function update($tbl, $data, $where)
         {
-        $SQL = "UPDATE users SET ";
+        $SQL = "UPDATE $tbl SET ";
         foreach ($data as $key => $value) {
             $SQL .= " $key ='$value',";
         }

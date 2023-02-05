@@ -81,19 +81,19 @@
         /* color: #a99567; */
       }
 </style>
-    <section class="se_1" >
+    <section class="se_1">
         <div class="container">
             <div class="row align-items">
                 <div class="col_50">
                     <div class="se_1_text">
-                        <h1 id="slidertitle">   </h1>
+                        <h1>Study Smarter, Not Harder! With Gujarat's No.1 Academy</h1>
                         <button class="button" data-modal="modalOne">Join Us</button>
-                        <p id="slidertext">    </p>
+                        <p>We are proud to say that WebSankul is the most trusted Academy & Digital Class in gujarat</p>
                     </div>
                 </div>
                 <div class="col_50">
-                    <div class="se_1_img" id="sliderimage" >
-                        
+                    <div class="se_1_img">
+                        <img src="assets/img/hero-side-image.png" alt="">
                     </div>
                 </div>
             </div>
@@ -113,8 +113,56 @@
                     </div>
                 </div>
             </div>
-            <div class="row" id="s2">
-                
+            <div class="row">
+                <div class="col_30">
+                    <div class="card" data-aos="zoom-in">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <h4>Best Educators</h4>
+                        <p>We have expert faculties from all over Gujarat who have decades of experience in their
+                            respective field.</p>
+
+                    </div>
+                </div>
+                <div class="col_30">
+                    <div class="card" data-aos="zoom-in">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h4>Learn anytime, anywhere</h4>
+                        <p>Additionally, we offer a mobile app for online courses as well as the offline course on a
+                            pendrive.</p>
+
+                    </div>
+                </div>
+                <div class="col_30">
+                    <div class="card" data-aos="zoom-in">
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                        <h4>Affordable Education</h4>
+                        <p>Quality education must be made accessible for everyone. We provide all courses at extremely
+                            low prices. </p>
+                    </div>
+                </div>
+                <div class="col_30">
+                    <div class="card" data-aos="zoom-in">
+                        <i class="fab fa-leanpub"></i>
+                        <h4>Smart Study Plan</h4>
+                        <p>To help all students achieve their goals and objectives, we provide them with practical study
+                            schedules.</p>
+                    </div>
+                </div>
+                <div class="col_30">
+                    <div class="card" data-aos="zoom-in">
+                        <i class="fas fa-book"></i>
+                        <h4>Quality Materials</h4>
+                        <p>Our inhouse content team prepare quality content for materials, books, Ebooks, PDFs etc.</p>
+                    </div>
+                </div>
+                <div class="col_30">
+                    <div class="card" data-aos="zoom-in">
+                        <i class="fas fa-file-download"></i>
+                        <h4>Free Current affairs</h4>
+                        <p>We provide most recent news & current affairs for free, so that students may find everything
+                            in one</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -125,13 +173,13 @@
         <div class="container">
             <div class="row align-items">
                 <div class="col_50">
-                    <div class="se_3_img">
+                    <div class="se_3_img" data-aos="fade-right">
                         <img src="assets/img/1st-home-image-min.png" alt="">
                     </div>
                 </div>
 
                 <div class="col_50">
-                    <div class="se_3_text" >
+                    <div class="se_3_text" data-aos="fade-left">
                         <h5>WHAT WE PROVIDE !</h5>
                         <h4>Websankul is a one-stop solution for all your needs! Providing offline batch to online
                             courses and books.</h4>
@@ -504,7 +552,7 @@
                         
 
                         <!-- <button name="inquiry">Submit</button> -->
-                        <button type="submit" value="Submit"  class="button1" data-modal="modalOne">Submit</button>
+                        <input type="submit" name="inquiry" value="Submit">
                     </form>
                 </div>
             </div>
@@ -515,7 +563,7 @@
       <div class="modal-content">
         <div class="contact-form">
           
-          <form method="post" id="inquiryform">
+          <form method="post" >
           <a class="close">&times;</a>
             <h4>JOIN US...</h4>
             <p>Enter your details to receive a call back from us</p>
@@ -531,7 +579,7 @@
                             <option value="JEE">JEE</option>
                             <option value="NEET">NEET</option>
                 </select>
-                <button type="submit" value="Submit"  class="button1" data-modal="modalOne">Submit</button>
+                <input type="submit" name="inquiry" value="Submit">
             </div>
             
            
@@ -552,43 +600,6 @@
         };
         
       });
-      let submitBtns = [...document.querySelectorAll(".button1")];
-      submitBtns.forEach(function (btn) {
-        btn.onclick = function () {
-     
-            event.preventDefault();     
-            let FormData = $("#inquiryform").serializeArray() ;  
-            //console.log(FormData);
-            var result = {};
-            $.each(FormData, function() {
-            result[this.name] = this.value;   
-            });
-            //console.log(result);
-            var course=result['course'];
-            var email=result['email'];
-            let header_for_post = {
-            method: 'POST', 
-            body: JSON.stringify(result) 
-            }
-            //console.log(header_for_post);
-            fetch("http://localhost/Group_project/API/addvisiter", header_for_post).then(response => response.json()).then((res) => {
-                //console.log(res);
-            if(res.Code=="1"){
-                document.cookie=`inquiry=${result['email']}`;
-               if(course=="JEE"){
-                window.location.href="http://localhost/Group_project/jee";
-               }
-               else{
-                window.location.href="http://localhost/Group_project/neet";
-               }
-            }else{
-                alert("Try again...");
-            }
-            });
-        };
-        
-      });
-
       let closeBtns = [...document.querySelectorAll(".close")];
       closeBtns.forEach(function (btn) {
         btn.onclick = function () {
@@ -601,7 +612,45 @@
           event.target.style.display = "none";
         }
       };
-   
+    //   function inquiry(){
+    //     event.preventDefault();
+    //     let FormData=$("#inquiry").serializeArray()
+    //     let result{}="";
+    //     $.each(FormData,function(){
+    //         result[this.name]=this.value;
+    //     });
+    //     let header_for _post={
+    //         method:"POST",
+    //         body:JSON.stringify(result)
+    //     }
+    //     fetch("http://localhost/Group_project/API/inquiryData",header_for_post).then(response=>json.response()).then(res()=>{
+    //         console.log(res);
+    //         $data=json.decode(res);
+    //         echo $data['name'];
+    //     })
+    //   }
+
+
+
+    
+    //   document.getElementsByName("inquiry").addEventListener("click", function(event) {
+    //     event.preventDefault();
+    //     let FormData=$("#inquiry").serializeArray()
+    //     let result{}="";
+    //     $.each(FormData,function(){
+    //         result[this.name]=this.value;
+    //     });
+    //     let header_for _post={
+    //         method:"POST",
+    //         body:JSON.stringify(result)
+    //     }
+    //     fetch("http://localhost/Group_project/API/inquiryData",header_for_post).then(response=>json.response()).then(res()=>{
+    //         console.log(res);
+    //         $data=json.decode(res);
+    //         echo $data['name'];
+    //     })
+    //   })
+     
 
     function checkreq(e){
 			const el=e;
@@ -618,7 +667,7 @@
             } else {
                 e.nextSibling.remove(); 
             }
-    }
+		}
 
 
 		document.getElementById("email").addEventListener("keyup", function() {
@@ -646,52 +695,5 @@
             }
         }
     })
-    
-    function section1(){
-        fetch("http://localhost/Group_project/API/section1").then(response=>response.json()).then((res)=>{
-            //console.log(res.Data);
-            slidertitle = '';
-            slidertext = '';
-            sliderimage = '';
-            let count=1;
-				res.Data.forEach(element => {
-                    if(element.status=="0" && count==1){
-					slidertitle =`${element.slider_title}`
-                    slidertext  =`${element.slider_text}`
-                    sliderimage = ` <img src="${element.slider_image}" alt="">`
-                    count++;                          
-                    }
-                    
-				})
-				
-				 $("#slidertitle").html(slidertitle);
-                 $("#slidertext").html(slidertext);
-                 $("#sliderimage").html(sliderimage);
-		})
-    }
-    section1()
-    function section2(){
-        fetch("http://localhost/Group_project/API/section2").then(response=>response.json()).then((res)=>{
-            //console.log(res);
-            let count1=1;
-            let featureresponse="";
-			res.Data.forEach(element => {
-                    if(element.status=="0" && count1<7){
-					   featureresponse +=`<div class="col_30">
-                                    <div class="card" >
-                                        <i class="${element.s2_icon}"></i>
-                                        <h4>${element.s2_title}</h4>
-                                        <p>${element.s2_text}</p>
-                                    </div>
-                                </div>`
-                                                
-                    }
-                    count1++
-				})
-				//console.log(featureresponse)
-				 $("#s2").html(featureresponse);
 
-        })
-    }
-    section2()
     </script>

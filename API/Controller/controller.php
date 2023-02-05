@@ -45,6 +45,22 @@ class controller extends model{
                        break;
 
 
+                    case '/addvisiter':
+                       $data=json_decode(file_get_contents("php://input"),true);
+                       //$course=$data['course'];
+                       if($data['name']!="" && $data['email']!="" && $data['mobile_no']!="" )
+                       {
+                            $Res=$this->insert("inquiry",$data);
+                            //print_r($Res);
+                            echo json_encode($Res);
+                            
+                        }else{
+                            echo "All Data required";
+                        }
+                    
+                       break;
+
+
                     case '/loginuser':
                         $data=json_decode(file_get_contents('php://input'),true);
                         if($data['user_name']!="" && $data['user_password']!=""){
@@ -54,9 +70,7 @@ class controller extends model{
                                 echo "Username and password is required.";
                             }
                         break;
-                    case 'downloadfile':
-                        echo "sadfgh";
-                        break;
+                    
 
 
                     case '/alluser':
@@ -64,14 +78,19 @@ class controller extends model{
                         echo json_encode($Res);
                         break;
 
+
                      case '/allmaterial':
                         $Res = $this->select("material");
                         echo json_encode($Res);
                         break;
+
+
                     case '/allemail':
                         $Res = $this->select("email");
                         echo json_encode($Res);
                         break;
+
+
                     case '/searchuser':
                         $data=json_decode(file_get_contents('php://input'),true);
                         // echo "<pre>";
@@ -84,23 +103,89 @@ class controller extends model{
                             echo "search data required.";
                         }
                         break;
+
+
                     case '/deletedata':
                         
                         $Res=$this->delete("users",array("user_id"=>$_REQUEST['id']));
                         echo json_encode($Res);
                         break;
-                    
+
+
+                    case '/menustatus':
+                        $Res=$this->select("mainmenu",array("menu_id"=>$_REQUEST['menu_id']));
+                        echo json_encode($Res);
+                        if($Res['Data']['0']->menu_status=="0"){
+                            $result=$this->update("mainmenu",array("menu_status"=>"1"),array("menu_id"=>$Res['Data']['0']->menu_id));
+                        }else{
+                            $result=$this->update("mainmenu",array("menu_status"=>"0"),array("menu_id"=>$Res['Data']['0']->menu_id));
+                        }
+                        //echo json_encode($result);
+                        break;
+
+
+
+                        case '/sectionstatus':
+                            $Res=$this->select("section",array("section_id"=>$_REQUEST['section_id']));
+                            echo json_encode($Res);
+                            if($Res['Data']['0']->status=="0"){
+                                $result=$this->update("section",array("status"=>"1"),array("section_id"=>$Res['Data']['0']->section_id));
+                            }else{
+                                $result=$this->update("section",array("status"=>"0"),array("section_id"=>$Res['Data']['0']->section_id));
+                            }
+                            //echo json_encode($result);
+                            break;
+
+
                      case '/edituserdata':
                         $data=json_decode(file_get_contents('php://input'),true);
-                        $Res=$this->update("users",$data,array("user_id"=>$_REQUEST['id']));
+                        $Res=$this->update("users",$data,array("user_id"=>$data['user_id']));
                         echo json_encode($Res);
                         break;
+
+
+
                     case '/navbar':
                         
                         $Res=$this->select("mainmenu");
                         echo json_encode($Res);
                         break;
+
+
+                    case '/section1':
+                        
+                        $Res=$this->select("section");
+                        echo json_encode($Res);
+                        break;
+
+
+                     case '/section2':
+                        
+                        $Res=$this->select("section2");
+                        echo json_encode($Res);
+                        break;
                     
+
+                    case '/addslider':
+                        $data=json_decode(file_get_contents('php://input'),true);
+                        $maintitle=addslashes($data['slider_title']);
+                        //echo $maintitle;
+                        $data['slider_title']=$maintitle;
+                        $Res=$this->insert("section",$data);
+                        echo json_encode($Res);
+                        break;
+                    
+
+
+                    case '/addsection2':
+                        $data=json_decode(file_get_contents('php://input'),true);
+                        
+                        $Res=$this->insert("section2",$data);
+                        echo json_encode($Res);
+                        break;
+
+
+                        
                      case '/downloadfile' :
                     //print_r($_REQUEST['material_id']);
                     $Res = $this->select('material',array("material_id"=>$_REQUEST['id']));
@@ -163,6 +248,12 @@ class controller extends model{
                         else{
                             echo "Error";
                         }
+                        echo json_encode($Res);
+                        break;
+
+
+                    case '/selectbyid' :
+                        $Res = $this->select("users", array("user_id"=>$_REQUEST['user_id']));
                         echo json_encode($Res);
                         break;
                     default:
