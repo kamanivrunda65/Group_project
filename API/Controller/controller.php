@@ -126,13 +126,28 @@ class controller extends model{
 
 
                         case '/sectionstatus':
-                            $Res=$this->select("section",array("section_id"=>$_REQUEST['section_id']));
-                            echo json_encode($Res);
-                            if($Res['Data']['0']->status=="0"){
-                                $result=$this->update("section",array("status"=>"1"),array("section_id"=>$Res['Data']['0']->section_id));
-                            }else{
-                                $result=$this->update("section",array("status"=>"0"),array("section_id"=>$Res['Data']['0']->section_id));
+                            if(isset($_REQUEST['section_id']))
+                            {
+                                $Res=$this->select("section",array("section_id"=>$_REQUEST['section_id']));
+                                echo json_encode($Res);
+                                if($Res['Data']['0']->status=="0"){
+                                    $result=$this->update("section",array("status"=>"1"),array("section_id"=>$Res['Data']['0']->section_id));
+                                }else{
+                                    $result=$this->update("section",array("status"=>"0"),array("section_id"=>$Res['Data']['0']->section_id));
+                                }
                             }
+                            elseif(isset($_REQUEST['s2_id'])){
+                                $Res=$this->select("section2",array("s2_id"=>$_REQUEST['s2_id']));
+                                echo json_encode($Res);
+                                if($Res['Data']['0']->status=="0"){
+                                    $result=$this->update("section2",array("status"=>"1"),array("s2_id"=>$Res['Data']['0']->s2_id));
+                                }else{
+                                    $result=$this->update("section2",array("status"=>"0"),array("s2_id"=>$Res['Data']['0']->s2_id));
+                                }
+                            }else{
+
+                            }
+                            
                             //echo json_encode($result);
                             break;
 
@@ -162,6 +177,13 @@ class controller extends model{
                      case '/section2':
                         
                         $Res=$this->select("section2");
+                        echo json_encode($Res);
+                        break;
+
+
+                    case '/section7':
+                        
+                        $Res=$this->select("user_review");
                         echo json_encode($Res);
                         break;
                     

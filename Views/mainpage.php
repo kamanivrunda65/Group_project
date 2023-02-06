@@ -113,7 +113,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row" id="s2">
+            <div class="row" id="s2" data-aos="zoom-in">
                 
             </div>
         </div>
@@ -125,13 +125,13 @@
         <div class="container">
             <div class="row align-items">
                 <div class="col_50">
-                    <div class="se_3_img">
+                    <div class="se_3_img" data-aos="fade-right">
                         <img src="assets/img/1st-home-image-min.png" alt="">
                     </div>
                 </div>
 
                 <div class="col_50">
-                    <div class="se_3_text" >
+                    <div class="se_3_text" data-aos="fade-left">
                         <h5>WHAT WE PROVIDE !</h5>
                         <h4>Websankul is a one-stop solution for all your needs! Providing offline batch to online
                             courses and books.</h4>
@@ -298,90 +298,15 @@
 
             <div class="row padding">
                 <div class="col_50">
-                    <div class="row responsive">
-                        <div class="col_12">
-                            <div class="se_7_slider_1_text">
-                                <span><i class="fa fa-quote-right" aria-hidden="true"></i></span>
-                                <p>All the faculties are very exceptional. They have covered almost all topics. There
-                                    are many videos on various topics of the syllabus. Great work and effort with an
-                                    affordable price. In every video, they tried their best.</p>
-                                <img src="assets/img/user_male.png.jpg" alt="">
-                                <ul>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                </ul>
-                                <h4>kaushik valiya <span> student</span></h4>
-                            </div>
-                        </div>
+                    <div class="row responsive" id="s7">
+                       
 
-
-                        <div class="col_12">
-                            <div class="se_7_slider_1_text">
-                                <span><i class="fa fa-quote-right" aria-hidden="true"></i></span>
-                                <p>All the faculties are very exceptional. They have covered almost all topics. There
-                                    are many videos on various topics of the syllabus. Great work and effort with an
-                                    affordable price. In every video, they tried their best.</p>
-                                <img src="assets/img/user_male.png.jpg" alt="">
-                                <ul>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                </ul>
-                                <h4>kaushik valiya <span> student</span></h4>
-                            </div>
-                        </div>
-
-
-                        <div class="col_12">
-                            <div class="se_7_slider_1_text">
-                                <span><i class="fa fa-quote-right" aria-hidden="true"></i></span>
-                                <p>All the faculties are very exceptional. They have covered almost all topics. There
-                                    are many videos on various topics of the syllabus. Great work and effort with an
-                                    affordable price. In every video, they tried their best.</p>
-                                <img src="assets/img/user_male.png.jpg" alt="">
-                                <ul>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                </ul>
-                                <h4>kaushik valiya <span> student</span></h4>
-                            </div>
-                        </div>
-
-
-                        <div class="col_12">
-                            <div class="se_7_slider_1_text">
-                                <span><i class="fa fa-quote-right" aria-hidden="true"></i></span>
-                                <p>All the faculties are very exceptional. They have covered almost all topics. There
-                                    are many videos on various topics of the syllabus. Great work and effort with an
-                                    affordable price. In every video, they tried their best.</p>
-                                <img src="assets/img/user_male.png.jpg" alt="">
-                                <ul>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
-                                </ul>
-                                <h4>kaushik valiya <span> student</span></h4>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
                 <div class="col_50">
 
-
-
-
-                </div>
+            </div>
 
             </div>
         </div>
@@ -694,4 +619,34 @@
         })
     }
     section2()
+    function section7(){
+        fetch("http://localhost/Group_project/API/section7").then(response=>response.json()).then((res)=>{
+            //console.log(res);
+            let count1=1;
+            let reviewresponse="";
+			res.Data.forEach(element => {
+                    if(element.status=="0" && count1<5){
+                        let rate=element.review_rate;
+					   reviewresponse +=`<div class="col_12">
+                                                <div class="se_7_slider_1_text">
+                                                    <span><i class="fa fa-quote-right"  aria-hidden="true"></i></span>
+                                                        <p>${element.review_text}</p>
+                                                        <img src="${element.r_image}" alt="">
+                                                        <ul>`
+                    for(let i=0; i<rate;i++){
+                       reviewresponse +=`<li><a href="#"><i class="fa-solid fa-star"></i></a></li>`
+                    }
+                       reviewresponse += ` </ul>
+                                                        <h4>${element.user_name}<span> student</span></h4>
+                                                </div>
+                                            </div>`
+                    }
+                    count1++
+				})
+				
+				 $("#s7").html(reviewresponse);
+
+        })
+    }
+    section7()
     </script>

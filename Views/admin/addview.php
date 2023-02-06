@@ -7,17 +7,17 @@
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        Modal form
+                        Views Form
                     </header>
                     <div class="panel-body">
                         <div class="position-center form-horizontal text-center">
                             <div class="row">
                                 <div class="col-lg-6" ><lable >Home page section 1  </label></div>
-                                <div class="col-lg-6"><a href="#myModal-1" data-toggle="modal" class="btn btn-success ">   Add Sliders</a></div>
+                                <div class="col-lg-6"><a href="#myModal-1" data-toggle="modal" class="btn btn-primary ">   Add Sliders</a></div>
                             </div><hr>
                             <div class="row">
                                 <div class="col-lg-6" ><lable >Home page section 2  </label></div>
-                                <div class="col-lg-6"><a href="#myModal-2" data-toggle="modal" class="btn btn-success ">   Add Features</a></div>
+                                <div class="col-lg-6"><a href="#myModal-2" data-toggle="modal" class="btn btn-primary ">   Add Features</a></div>
                             </div>
 
                        
