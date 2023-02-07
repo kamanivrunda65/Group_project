@@ -212,12 +212,7 @@ class controller extends model{
                     include_once('Views/admin/viewtable.php');
                     include_once('Views/admin/adminfooter.php');
                     break;
-                case '/maincopy':
-                    include_once('Views/header.php');
-                    include_once('Views/mainindex.php');
-                    include_once('Views/footer.php');
-                    break;
-
+              
                 default :
                 
                     break;

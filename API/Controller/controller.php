@@ -144,7 +144,17 @@ class controller extends model{
                                 }else{
                                     $result=$this->update("section2",array("status"=>"0"),array("s2_id"=>$Res['Data']['0']->s2_id));
                                 }
-                            }else{
+                            }
+                            elseif(isset($_REQUEST['r_id'])){
+                                $Res=$this->select("user_review",array("r_id"=>$_REQUEST['r_id']));
+                                echo json_encode($Res);
+                                if($Res['Data']['0']->status=="0"){
+                                    $result=$this->update("user_review",array("status"=>"1"),array("r_id"=>$Res['Data']['0']->r_id));
+                                }else{
+                                    $result=$this->update("user_review",array("status"=>"0"),array("r_id"=>$Res['Data']['0']->r_id));
+                                }
+                            }
+                            else{
 
                             }
                             
