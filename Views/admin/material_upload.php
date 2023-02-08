@@ -12,7 +12,7 @@
                         </header>
                         <div class="panel-body">
                             <div class="position-center">
-                                <form class="form-horizontal bucket-form" role="form" method="post"  enctype="multipart/form-data">
+                                <form class="form-horizontal bucket-form"  method="post"  enctype="multipart/form-data" id="materialupload">
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label col-lg-3" for="inputSuccess">Course</label>
                                     <div class="col-lg-9">
@@ -36,12 +36,12 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label col-lg-3" for="exampleInputFile">File input</label>
                                     <div class="col-lg-9">
-                                    <input type="file" id="exampleInputFile" name="filename" id="filename">
+                                    <input type="file"  name="material_name" id="material_name">
                                     <p class="help-block">Example block-level help text here.</p>
                                     </div>
                                 </div>
-                                
-                                <center><button type="submit" class="btn btn-info" name="material_upload">Submit</button></center>
+                               
+                                <center><button type="submit" class="btn btn-info" >Submit</button></center>
                             </form>
                             </div>
                         </div>
@@ -51,3 +51,30 @@
         </div>
     </section>
 </section>
+
+
+    <script>
+        $("form#materialupload").submit(function(e) {
+        e.preventDefault();
+         var formData = new FormData(this);
+    
+    $.ajax({
+        url:'http://localhost/Group_project/API/upload',
+        type: 'POST',
+        dataType: 'text', // <-- what to expect back from the PHP script, if anything
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (res) {
+            //alert(res);
+        window.location.href="http://localhost/Group_project/materialtable";
+           
+            
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+
+});
+    </script>

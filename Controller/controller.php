@@ -118,57 +118,57 @@ class controller extends model{
                     include_once('Views/admin/adminheader.php');
                     include_once('Views/admin/material_upload.php');
                     include_once('Views/admin/adminfooter.php');
-                    if(isset($_REQUEST['material_upload'])){
-                        array_pop($_REQUEST);
-                        echo"<pre>";
-                        // print_r($_REQUEST);
-                        // print_r($_FILES);
-                        if ($_FILES['filename']['error'] == 0) {
-                        $file = $_FILES['filename']['name'];
-                        move_uploaded_file($_FILES['filename']['tmp_name'], "assets/material/$file");
-                        }
-                        $newArray=array_merge($_REQUEST,array("material_name"=>$file));
-                        //print_r($newArray);
-                        $Res=$this->insert("material",$newArray);
-                        if($Res['Code'] == 1){
+                    // if(isset($_REQUEST['material_upload'])){
+                    //     array_pop($_REQUEST);
+                    //     echo"<pre>";
+                    //     // print_r($_REQUEST);
+                    //     // print_r($_FILES);
+                    //     if ($_FILES['filename']['error'] == 0) {
+                    //     $file = $_FILES['filename']['name'];
+                    //     move_uploaded_file($_FILES['filename']['tmp_name'], "assets/materials/$file");
+                    //     }
+                    //     $newArray=array_merge($_REQUEST,array("material_name"=>$file));
+                    //     //print_r($newArray);
+                    //     $Res=$this->insert("material",$newArray);
+                    //     if($Res['Code'] == 1){
                                 
-                                header("location:materialupload");
-                                print_r($file);
+                    //             header("location:materialupload");
+                    //             print_r($file);
                                 
-                            }
-                            else{
-                                echo "Error";
-                            }
-                    }
+                    //         }
+                    //         else{
+                    //             echo "Error";
+                    //         }
+                    // }
                     break;
                  case '/materialtable':
                     include_once('Views/admin/adminheader.php');
                     include_once('Views/admin/material.php');
                     include_once('Views/admin/adminfooter.php');
                     break;
-                case '/downloadfile' :
-                    //print_r($_REQUEST['material_id']);
-                    $Res = $this->select('material',array("material_id"=>$_REQUEST['material_id']));
-                    if ($Res['Code'] == "1") {
+                // case '/downloadfile' :
+                //     //print_r($_REQUEST['material_id']);
+                //     $Res = $this->select('material',array("material_id"=>$_REQUEST['material_id']));
+                //     if ($Res['Code'] == "1") {
                       
-                         //header("location:materialupload");
-                        //print_r($Res['Data'][0]->material_name);
-                        $file=$Res['Data'][0]->material_name;
+                //          //header("location:materialupload");
+                //         //print_r($Res['Data'][0]->material_name);
+                //         $file=$Res['Data'][0]->material_name;
                         
-                        $file_location="assets/material/".$file;
-                        //$size = filesize($file_location);
-                        //echo $size;
-                        header('Content-Type: application/octet-stream');
-                        header('Content-Disposition: attachment; filename="' . basename($file_location) . '"');
-                        header('Pragma: public');
-                        header('Content-Length: ' . filesize($file_location));
+                //         $file_location="assets/materials/".$file;
+                //         //$size = filesize($file_location);
+                //         //echo $size;
+                //         header('Content-Type: application/octet-stream');
+                //         header('Content-Disposition: attachment; filename="' . basename($file_location) . '"');
+                //         header('Pragma: public');
+                //         header('Content-Length: ' . filesize($file_location));
                         
-                        readfile($file_location);
+                //         readfile($file_location);
                        
-                    }else{
-                        echo "<script>alert('Error while inserting try after sometime !!!!')</script>";
-                    }
-                    break;
+                //     }else{
+                //         echo "<script>alert('Error while inserting try after sometime !!!!')</script>";
+                //     }
+                //     break;
                
                     case '/profile':
                     include_once('Views/admin/adminheader.php');

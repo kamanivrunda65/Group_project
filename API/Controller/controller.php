@@ -124,6 +124,25 @@ class controller extends model{
                         break;
 
 
+                        case '/upload':
+                            
+                            //print_r($_REQUEST);
+                            //print_r($_FILES);
+
+
+                            if ($_FILES['material_name']['error'] == 0) {
+                                    $file = $_FILES['material_name']['name'];
+                                    $temp=$_FILES["material_name"]["tmp_name"];
+                                    move_uploaded_file($temp, "material/".$file);
+                                }
+                                    //print_r($file);
+                                    $newArray=array_merge($_REQUEST,array("material_name"=>$file));
+                                    //print_r($newArray);
+                                    $Res=$this->insert("material",$newArray);
+                                    echo json_encode($Res);
+                                   
+                            break;
+
 
                         case '/sectionstatus':
                             if(isset($_REQUEST['section_id']))
@@ -224,8 +243,17 @@ class controller extends model{
                     echo json_encode($Res);
                     if ($Res['Code'] == "1") {
                       
-                        print_r($Res);
+                        //print_r($Res);
                         $file=$Res['Data'][0]->material_name;
+                        $file_location="material/".$file;
+                        $size = filesize($file_location);
+                        //echo $size;
+                        header('Content-Type: application/octet-stream');
+                        header('Content-Disposition: attachment; filename='.$file);
+                        // header('Pragma: public');
+                        header('Content-Length: '.$size);
+                        
+                        readfile($file_location);
 
                         // $pdf=new FPDF();
                         // $file = file_get_contents("assets/material/".$file);
@@ -251,13 +279,7 @@ class controller extends model{
                         // echo $var;
 
 
-                        echo $file;
-                        $file_location="assets/material/".$file;
-                        header('Content-Type: application/pdf');
-                        header('Content-Disposition: attachment; filename="' . basename($file_location) . '"');
-                        header('Pragma: public');
-                        header('Content-Length: ' . filesize($file_location));
-                        readfile($file_location);
+                       
 
 
                     }else{

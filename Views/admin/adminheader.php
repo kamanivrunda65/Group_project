@@ -17,6 +17,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="<?php echo  $this->BaseURLDynamic;?>admin_assets/css/font.css" type="text/css"/>
 <link href="<?php echo  $this->BaseURLDynamic;?>admin_assets/css/font-awesome.css" rel="stylesheet"> 
 <script src="<?php echo  $this->BaseURLDynamic;?>admin_assets/js/jquery2.0.3.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 </head>
 <body>
 <!-- <script src="../../../../../../../m.servedby-buysellads.com/monetization.js" type="text/javascript"></script> -->
