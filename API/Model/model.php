@@ -164,5 +164,44 @@ date_default_timezone_set('Asia/Kolkata');
         }
         return $Respose;
     }
+
+    public function select_join($tbl,$join,$group, $where = ""){
+        $SQL = "SELECT * FROM $tbl"; //this is a dynamic parameter recv krya 
+        // echo "<pre>";
+        // print_r($join);
+        foreach ($join as $jkey => $jvalue) {
+            $SQL .= " JOIN $jkey ON $jvalue ";
+        }
+        //echo $SQL;
+        if ($where != "") {
+                $SQL .= " WHERE ";
+                foreach ($where as $key => $value) 
+                {
+                    $SQL .= "  $key = '$value' AND";
+                }
+            $SQL = rtrim($SQL, "AND");
+        }
+        if($group!=""){
+            
+        $SQL .="GROUP BY $group";
+        }
+         //echo $SQL;
+        // exit; 
+        $SQLEx = $this->connection->query($SQL);
+        if ($SQLEx->num_rows > 0) {
+            while ($Fetch = $SQLEx->fetch_object()) {
+                $FetchData[] = $Fetch;
+                }
+                $Respose["Code"] = "1";
+                $Respose["Msg"] = "Success";
+                $Respose["Data"] = $FetchData;
+            } else {
+                $Respose["Code"] = "0";
+                $Respose["Msg"] = "Try again";
+                $Respose["Data"] = 0;
+            }
+        return $Respose;
+        // echo $SQL; 
+    }
     }
 ?>

@@ -42,6 +42,7 @@
                                 </div>
                                
                                 <center><button type="submit" class="btn btn-info" >Submit</button></center>
+                            <!-- <div id="preview"></div> -->
                             </form>
                             </div>
                         </div>
@@ -66,8 +67,9 @@
         processData: false,
         data: formData,
         success: function (res) {
-            //alert(res);
-        window.location.href="http://localhost/Group_project/materialtable";
+            alert(res);
+            window.location.href="http://localhost/Group_project/materialtable";
+            // $('#preview').attr('src', "API/material/"+res);
            
             
         },

@@ -79,7 +79,14 @@ class controller extends model{
                         break;
 
 
-                     case '/allmaterial':
+                     case '/materialmenu':
+                        $Res = $this->select("course");
+                       // $Res = $this->select_join("course",array("material"=>"course.course_name=material.material_course","course_name"));
+                        echo json_encode($Res);
+                        break;
+
+
+                    case '/allmaterial':
                         $Res = $this->select("material");
                         echo json_encode($Res);
                         break;
@@ -132,14 +139,24 @@ class controller extends model{
 
                             if ($_FILES['material_name']['error'] == 0) {
                                     $file = $_FILES['material_name']['name'];
-                                    $temp=$_FILES["material_name"]["tmp_name"];
-                                    move_uploaded_file($temp, "material/".$file);
+                                    $temp="material/".$_FILES["material_name"]["name"];
+                                    $fileType = strtolower(pathinfo($temp, PATHINFO_EXTENSION));
+                                    $allowedTypes = ['pdf'];
+                                    if (!in_array($fileType, $allowedTypes)) {
+                                        $msg = "Type is not allowed";
+                                        
+                                    }
+                                    elseif ($_FILES["material_name"]["size"] > 5000000) {
+                                        $msg = "Sorry, your file is too large.";
+                                        
+                                    } elseif (move_uploaded_file($_FILES["material_name"]["tmp_name"], $temp)) {
+                                       
+                                        $newArray=array_merge($_REQUEST,array("material_name"=>$file));
+                                        $Res=$this->insert("material",$newArray);
+                                        echo json_encode($Res);
+                                    }
+                                   echo $msg;
                                 }
-                                    //print_r($file);
-                                    $newArray=array_merge($_REQUEST,array("material_name"=>$file));
-                                    //print_r($newArray);
-                                    $Res=$this->insert("material",$newArray);
-                                    echo json_encode($Res);
                                    
                             break;
 
@@ -236,56 +253,6 @@ class controller extends model{
                         break;
 
 
-                        
-                     case '/downloadfile' :
-                    //print_r($_REQUEST['material_id']);
-                    $Res = $this->select('material',array("material_id"=>$_REQUEST['id']));
-                    echo json_encode($Res);
-                    if ($Res['Code'] == "1") {
-                      
-                        //print_r($Res);
-                        $file=$Res['Data'][0]->material_name;
-                        $file_location="material/".$file;
-                        $size = filesize($file_location);
-                        //echo $size;
-                        header('Content-Type: application/octet-stream');
-                        header('Content-Disposition: attachment; filename='.$file);
-                        // header('Pragma: public');
-                        header('Content-Length: '.$size);
-                        
-                        readfile($file_location);
-
-                        // $pdf=new FPDF();
-                        // $file = file_get_contents("assets/material/".$file);
-                        // $pdf->AddPage();
-                        // $pdf->SetFont('Arial','B',16);
-                        // $pdf->Cell(40,10,$file);
-                        // $pdf->Output('assets/material/biology.pdf','F');
-                        // header('Content-Type: application/pdf');
-                        // header('Content-Transfer-Encoding: binary');
-                        // header('Content-Disposition: attachment; filename="biology.pdf"');
-                        // echo $pdf->Output('', 'S');
-                        
-                        // $fileName = $file;
-                        // $pdf = new FPDI();
-                        // $pdf->setSourceFile($file);
-                        // $tplIdx = $pdf->importPage(1);
-                        // $pdf->useTemplate($tplIdx);
-                        // $pdf->SetTitle($fileName);
-                        // $pdf->SetFont('Helvetica', 'B', 20);
-                        // $pdf->SetTextColor(0, 0, 0);
-                        // $pdf->SetFontSize(10);
-                        // $var=$pdf->Output('assets/material/'.$fileName.'.pdf', 'F');
-                        // echo $var;
-
-
-                       
-
-
-                    }else{
-                        echo "<script>alert('Error while inserting try after sometime !!!!')</script>";
-                    }
-                    break; 
 
                     case "/sendemail":
                         
