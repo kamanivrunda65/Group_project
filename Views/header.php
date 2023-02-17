@@ -47,17 +47,7 @@
                 <div class="col">
                     <div class="header_text">
                         <ul id="displaydata">
-                            <!-- <li><a href="home">HOME</a></li>
-                            <li class="dropdown">
-                                <a href="currentaffair">CURRENT AFFAIRS<i class="fa-solid fa-caret-down"></i></a>
-                                    <ul class="dropdown-nav">
-                                        <li><a href="jee">JEE</a></li>
-                                        <li><a href="neet">NEET</a></li>
-                                    </ul>
-                            </li>
-                            <li><a href="material">MATERIALS</a></li>
-                            <li><a href="contact">CONTACT US</a></li>
-                            <li><a href="about">ABOUT US</a></li> -->
+                           
                         </ul>
                     </div>
                 </div>

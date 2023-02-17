@@ -112,9 +112,36 @@ class controller extends model{
                         break;
 
 
+                    case '/searchmaterial':
+                        $data=json_decode(file_get_contents('php://input'),true);
+                        // echo "<pre>";
+                        // print_r($data);
+                        // echo "</pre>";
+                        if($data['search']!=""){
+                        $Res = $this->select_search("material",array("material_title"=>$data['search'],"material_name"=>$data['search'],"material_course"=>$data['search'],"material_subject"=>$data['search']));
+                        echo json_encode($Res);
+                        }else{
+                            echo "search data required.";
+                        }
+                        break;
+
                     case '/deletedata':
                         
                         $Res=$this->delete("users",array("user_id"=>$_REQUEST['id']));
+                        echo json_encode($Res);
+                        break;
+
+
+                    case '/selectmaterial':
+                        
+                        $Res=$this->select_join("material",array("course"=>"course.course_id=material.material_course"),array("course_id"=>$_REQUEST['id']));
+                        echo json_encode($Res);
+                        break;
+
+
+                    case '/deletefile':
+                        
+                        $Res=$this->delete("material",array("material_id"=>$_REQUEST['id']));
                         echo json_encode($Res);
                         break;
 

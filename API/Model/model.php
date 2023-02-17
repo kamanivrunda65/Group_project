@@ -165,7 +165,7 @@ date_default_timezone_set('Asia/Kolkata');
         return $Respose;
     }
 
-    public function select_join($tbl,$join,$group, $where = ""){
+    public function select_join($tbl,$join, $where = ""){
         $SQL = "SELECT * FROM $tbl"; //this is a dynamic parameter recv krya 
         // echo "<pre>";
         // print_r($join);
@@ -181,12 +181,7 @@ date_default_timezone_set('Asia/Kolkata');
                 }
             $SQL = rtrim($SQL, "AND");
         }
-        if($group!=""){
-            
-        $SQL .="GROUP BY $group";
-        }
-         //echo $SQL;
-        // exit; 
+        //echo $SQL;
         $SQLEx = $this->connection->query($SQL);
         if ($SQLEx->num_rows > 0) {
             while ($Fetch = $SQLEx->fetch_object()) {

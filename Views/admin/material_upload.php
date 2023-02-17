@@ -14,6 +14,12 @@
                             <div class="position-center">
                                 <form class="form-horizontal bucket-form"  method="post"  enctype="multipart/form-data" id="materialupload">
                                 <div class="form-group">
+                                    <label class="col-sm-3 control-label col-lg-3" for="inputSuccess">Subject</label>
+                                    <div class="col-lg-9">
+                                       <input class="form-control m-bot15" name="material_title">
+                                    </div>       
+                                </div>
+                                <div class="form-group">
                                     <label class="col-sm-3 control-label col-lg-3" for="inputSuccess">Course</label>
                                     <div class="col-lg-9">
                                         <select class="form-control m-bot15" name="material_course">

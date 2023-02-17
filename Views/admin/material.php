@@ -16,12 +16,14 @@
       </div>
       <div class="col-sm-7"></div>
       <div class="col-sm-3">
-      <div class="input-group">
-          <input type="text" class="input-sm form-control" placeholder="Search">
+      <form method="post" id="searchdata"> 
+        <div class="input-group">
+          <input type="text" class="input-sm form-control" name="search"  placeholder="Search">
           <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
+            <button class="btn btn-sm btn-default" type="submit" onclick="searchdata()">Go!</button>
           </span>
         </div>
+       </form>
         
       </div>
     </div>
@@ -39,11 +41,12 @@
         <thead>
           <tr>
             <th >No</th>
+            <th>Title</th>
             <th>Material</th>
             <th>Course</th>
             <th>Subject</th>
             <th data-breakpoints="xs">Date</th>
-            <th data-breakpoints="xs sm md" data-title="DOB">Download File</th>
+            <th data-breakpoints="xs sm md" ></th>
           </tr>
         </thead>
         <tbody id="displaydata">
@@ -80,7 +83,56 @@
  
 </section>
 <script>
-		
+  let roleid = getCookie("role_id");
+ 
+function searchdata(){
+    event.preventDefault();     
+        let FormData = $("#searchdata").serializeArray() ;  
+        console.log(FormData);
+        var result = {};
+        $.each(FormData, function() {
+            result[this.name] = this.value;   
+        });
+        //console.log(result);
+        let header_for_post = {
+            method: 'POST', 
+            body: JSON.stringify(result) 
+        }
+        //console.log(header_for_post);
+         fetch("http://localhost/Group_project/API/searchmaterial", header_for_post).then(response => response.json()).then((res) => {
+            //console.log(res);
+            htmlresponse = '';
+            count=1;
+				res.Data.forEach(element => {
+          
+					htmlresponse += `<tr data-expanded="true">
+                            <td>${count}</td>
+                            <td>${element.material_title}</td>
+                            <td>${element.material_name}</td>
+                            <td>${element.material_course}</td>
+                            <td>${element.material_subject}</td>
+                           
+                            <td>${element.date}</td>`
+                            if(roleid==1 || roleid==3){
+           htmlresponse +=   `<td><a href="deletefile?material_id=${element.material_id}" ><button type="submit" class="btn btn-info">Delete</button></a></td>`
+                          }
+                          else{
+           htmlresponse +=   `<td><a href="downloadfile?material_id=${element.material_id}" ><button type="submit" class="btn btn-info">DOWNLOAD</button></a></td>`                 
+                          }
+           htmlresponse += `</tr>`
+                         count++;
+          
+				})
+				 //console.log(htmlresponse);
+				 $("#displaydata").html(htmlresponse)
+  })
+}
+function deletefile(id){
+    //console.log(id)
+    fetch("http://localhost/Group_project/API/deletefile?material_id="+id).then(response=>response.json()).then((res)=>{
+      console.log(res)
+    })
+}	
 		fetch("http://localhost/Group_project/API/allmaterial").then(response=>response.json()).then((res)=>{
             //console.log(res.Data);
             htmlresponse = '';
@@ -89,26 +141,26 @@
         
 					htmlresponse += `<tr data-expanded="true">
                             <td>${count}</td>
+                            <td>${element.material_title}</td>
                             <td>${element.material_name}</td>
                             <td>${element.material_course}</td>
                             <td>${element.material_subject}</td>
                            
-                            <td>${element.date}</td>
-                            <td><a href="downloadfile?material_id=${element.material_id}" ><button type="submit" class="btn btn-info">DOWNLOAD</button></a></td>
-                            </tr>`
+                            <td>${element.date}</td>`
+                            
+                          if(roleid==1 || roleid==3){
+           htmlresponse +=   `<td><a href="deletefile?material_id=${element.material_id}" ><button type="submit" class="btn btn-info">Delete</button></a></td>`
+                          }
+                          else{
+           htmlresponse +=   `<td><a href="downloadfile?material_id=${element.material_id}" ><button type="submit" class="btn btn-info">DOWNLOAD</button></a></td>`                 
+                          }
+          htmlresponse += `</tr>`
                          count++;
           
 				})
 				 //console.log(htmlresponse);
 				 $("#displaydata").html(htmlresponse)
 		})
-    // function download(id){
-    //   //console.log(id);
-    //   fetch("http://localhost/Group_project/API/downloadfile?id="+id).then(response=>response.json()).then((res)=>{
-    //   console.log(res);
-    //   });
-    // }
+   
 	</script>
-  <!-- <a href="register?class=${element.batch_class}&course=${element.batch_course}"><button >Register</button></a><br> -->
-  <!-- <td><a href="downloadfile?material_id=${element.material_id}" ><button type="submit" class="btn btn-info">DOWNLOAD</button></a></td> -->
-  <!-- <button type="submit" class="btn btn-info" onclick="download(${element.material_id})">DOWNLOAD</button></a> -->
+  

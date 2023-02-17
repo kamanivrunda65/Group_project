@@ -31,8 +31,7 @@
                 <div class="col_12">
                     <div class="header_text">
                         <ul id="displaymenu">
-                            <!-- <a href="#">All materials</a>
-                            <a href="#">All materials</a> -->
+                           
                         </ul>
                         
                     </div>
@@ -42,23 +41,7 @@
 
 
             <div class="row  justify" id="displaymaterial">
-                <!-- <div class="col_30">
-                    <div class="pdf_box">
-                        <div class="row align-items">
-                            <div class="col_80">
-                                <div class="pdf_text">
-                                    <h3><span>નરેન્દ્ર મોદી દ્વારા ગ્રેટર નોઇડા ખાતે IDF વર્લ્ડ ડેરી સમિટ 2022નું
-                                            ઉદ્ઘાટન</span></h3>
-                                </div>
-                            </div>
-                            <div class="col_20">
-                                <div class="pdf_icons">
-                                    <p><i class="fa-solid fa-download"></i></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
+              
               
                 
             
@@ -83,18 +66,18 @@
     <script>
         
 		fetch("http://localhost/Group_project/API/materialmenu").then(response=>response.json()).then((res)=>{
-            console.log(res.Data);
-            htmltitle = '<li><a href="#">All materials</a><li>';
+           // console.log(res.Data);
+            htmltitle = '<li class="section_text" onclick="material()">All materials</li>';
             
             
 				res.Data.forEach(element => {
                    if(element.sub_course=="0"){
-					htmltitle += ` <li class="dropdown"><a>${element.course_name}</a><ul class="dropdown-nav">`
+					htmltitle += ` <li class="dropdown " ><a onclick="selectmaterial(${element.course_id})">${element.course_name}</a><ul class="dropdown-nav">`
                     let course=element.course_id;
                     res.Data.forEach(element => {
 
                             if(course==element.sub_course)
-                             htmltitle += `<li>${element.course_name}</li>`
+                             htmltitle += `<li >${element.course_name}</li>`
                             })
                         htmltitle += `</ul><li>`  
                     }  
@@ -103,10 +86,35 @@
 				 $("#displaymenu").html(htmltitle)
             });
 
-
+function selectmaterial(id){
+    fetch("http://localhost/Group_project/API/selectmaterial?id="+id).then(response=>response.json()).then((res)=>{
+        //console.log(res);
+        htmlmaterial="";
+                res.Data.forEach(element=>{
+                    htmlmaterial+=`<div class="col_30">
+                                        <div class="pdf_box">
+                                            <div class="row align-items">
+                                                <div class="col_80">
+                                                    <div class="pdf_text">
+                                                        <h3><span>${element.material_title}</span></h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col_20">
+                                                     <div class="pdf_icons">
+                                                     <a href="downloadfile?material_id=${element.material_id}"><p><i class="fa-solid fa-download"></i></p></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`
+                })
+                $("#displaymaterial").html(htmlmaterial)
+    })
+    
+}
             function material(){
                 fetch("http://localhost/Group_project/API/allmaterial").then(response=>response.json()).then((res)=>{
-                console.log(res.Data);
+               // console.log(res.Data);
                 htmlmaterial="";
                 res.Data.forEach(element=>{
                     htmlmaterial+=`<div class="col_30">
@@ -114,7 +122,7 @@
                                             <div class="row align-items">
                                                 <div class="col_80">
                                                     <div class="pdf_text">
-                                                        <h3><span>${element.material_name}</span></h3>
+                                                        <h3><span>${element.material_title}</span></h3>
                                                     </div>
                                                 </div>
                                                 <div class="col_20">
@@ -132,12 +140,3 @@
         material()
     </script>
 
-// <!-- <ul id="displaydata">
-//                         <li><a href="home">HOME</a></li>
-//                             <li class="dropdown">
-//                                 <a href="currentaffair">CURRENT AFFAIRS<i class="fa-solid fa-caret-down"></i></a>
-//                                     <ul class="dropdown-nav">
-//                                         <li><a href="jee">JEE</a></li>
-//                                         <li><a href="neet">NEET</a></li>
-//                                     </ul>
-//                             </li> -->
